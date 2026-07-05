@@ -3,19 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tragamonedas de Vocabulario IELTS/TOEFL</title>
+<title>Tragamonedas de Vocabulario Académico</title>
 <style>
   :root{
-    --gold:#f2b705;
-    --gold-dark:#c98f00;
-    --purple-1:#2b0a3d;
-    --purple-2:#4a1259;
-    --purple-3:#6c1f7a;
-    --card-bg:#ffffff;
-    --text-dark:#241a2e;
-    --green:#1f9d55;
-    --red:#d63031;
-    --blue:#2d6cdf;
+    --bg:#faf8f4;
+    --surface:#ffffff;
+    --text:#332f3d;
+    --text-soft:#6a6478;
+    --accent:#9483c9;
+    --accent-dark:#7863ac;
+    --accent-soft:#efeaf9;
+    --secondary:#7f9c8f;
+    --secondary-dark:#5f7d70;
+    --secondary-soft:#e6ede9;
+    --neutral-soft:#f1eee9;
+    --warn:#c17b5a;
+    --warn-soft:#f6e6de;
+    --border:#e6e1d8;
     --radius:14px;
     font-size:16px;
   }
@@ -24,8 +28,8 @@
     margin:0;
     min-height:100vh;
     font-family:'Segoe UI', Roboto, Arial, sans-serif;
-    background:linear-gradient(135deg, var(--purple-1), var(--purple-2) 50%, var(--purple-3));
-    color:#fff;
+    background:var(--bg);
+    color:var(--text);
     padding-bottom:60px;
   }
   header{
@@ -35,12 +39,11 @@
   header h1{
     margin:0 0 6px;
     font-size:clamp(1.4rem, 4vw, 2.2rem);
-    color:var(--gold);
-    text-shadow:0 2px 6px rgba(0,0,0,.4);
+    color:var(--accent-dark);
   }
   header p{
     margin:0;
-    opacity:.85;
+    opacity:.75;
     font-size:.95rem;
   }
 
@@ -48,18 +51,18 @@
     position:fixed;
     top:10px;
     right:10px;
-    background:rgba(0,0,0,.55);
-    border:1px solid var(--gold);
+    background:var(--surface);
+    border:1px solid var(--border);
     border-radius:999px;
     padding:8px 16px;
     font-size:.8rem;
     z-index:50;
-    backdrop-filter:blur(4px);
     display:flex;
     gap:14px;
     white-space:nowrap;
+    box-shadow:0 1px 4px rgba(0,0,0,.05);
   }
-  .stats-badge b{color:var(--gold);}
+  .stats-badge b{color:var(--accent-dark);}
 
   main{
     max-width:820px;
@@ -71,8 +74,8 @@
   }
 
   .panel{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.15);
+    background:var(--surface);
+    border:1px solid var(--border);
     border-radius:var(--radius);
     padding:18px 20px;
   }
@@ -83,13 +86,13 @@
     gap:24px;
     justify-content:space-between;
   }
-  .filter-group{flex:1 1 220px;}
+  .filter-group{flex:1 1 200px;}
   .filter-group h3{
     margin:0 0 10px;
     font-size:.85rem;
     text-transform:uppercase;
     letter-spacing:.06em;
-    color:var(--gold);
+    color:var(--secondary-dark);
   }
   .option-row{display:flex;flex-wrap:wrap;gap:8px;}
   .option-btn{
@@ -105,16 +108,18 @@
     display:block;
     padding:9px 14px;
     border-radius:10px;
-    border:1.5px solid rgba(255,255,255,.35);
+    border:1.5px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
     font-size:.85rem;
     cursor:pointer;
     transition:.15s;
     user-select:none;
   }
   .option-btn input:checked + label{
-    background:var(--gold);
-    color:#2b0a3d;
-    border-color:var(--gold);
+    background:var(--accent);
+    color:#ffffff;
+    border-color:var(--accent);
     font-weight:700;
   }
   .option-btn input:disabled + label{
@@ -131,13 +136,14 @@
     letter-spacing:.03em;
     border:none;
     border-radius:12px;
-    background:linear-gradient(180deg, var(--gold), var(--gold-dark));
-    color:#2b0a3d;
+    background:var(--accent);
+    color:#ffffff;
     cursor:pointer;
-    box-shadow:0 6px 0 #8a6600, 0 8px 14px rgba(0,0,0,.35);
-    transition:transform .08s;
+    box-shadow:0 2px 6px rgba(120,99,172,.35);
+    transition:background .15s, transform .08s;
   }
-  .spin-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #8a6600;}
+  .spin-btn:active{transform:translateY(1px);}
+  .spin-btn:hover:not(:disabled){background:var(--accent-dark);}
   .spin-btn:disabled{
     opacity:.5;
     cursor:not-allowed;
@@ -156,7 +162,7 @@
     display:inline-block;
     font-size:clamp(2rem, 8vw, 3.2rem);
     font-weight:800;
-    color:var(--gold);
+    color:var(--accent-dark);
     letter-spacing:.02em;
     filter:blur(1px);
   }
@@ -178,8 +184,7 @@
   .word-header .word{
     font-size:clamp(2.1rem, 7vw, 3rem);
     font-weight:800;
-    color:var(--gold);
-    text-shadow:0 2px 8px rgba(0,0,0,.4);
+    color:var(--accent-dark);
   }
   .badges{
     display:flex;
@@ -189,21 +194,22 @@
     margin-top:10px;
   }
   .badge{
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.3);
+    background:var(--neutral-soft);
+    color:var(--text-soft);
+    border:1px solid var(--border);
     border-radius:999px;
     padding:4px 12px;
     font-size:.72rem;
     text-transform:uppercase;
     letter-spacing:.05em;
   }
-  .badge.level-basico{background:#1f9d55;}
-  .badge.level-intermedio{background:#2d6cdf;}
-  .badge.level-avanzado{background:#c0392b;}
+  .badge.badge-exam{background:var(--secondary-soft);color:var(--secondary-dark);border-color:var(--secondary-soft);}
+  .badge.badge-level{background:var(--accent-soft);color:var(--accent-dark);border-color:var(--accent-soft);}
 
   .card{
-    background:var(--card-bg);
-    color:var(--text-dark);
+    background:var(--surface);
+    color:var(--text);
+    border:1px solid var(--border);
     border-radius:var(--radius);
     padding:16px 18px;
     margin-top:14px;
@@ -213,7 +219,7 @@
     font-size:.78rem;
     text-transform:uppercase;
     letter-spacing:.06em;
-    color:#6c1f7a;
+    color:var(--accent-dark);
   }
   .card p{margin:0;line-height:1.5;font-size:.98rem;}
 
@@ -227,8 +233,9 @@
     .examples-grid{grid-template-columns:1fr;}
   }
   .example-card{
-    background:rgba(255,255,255,.95);
-    color:var(--text-dark);
+    background:var(--surface);
+    color:var(--text);
+    border:1px solid var(--border);
     border-radius:var(--radius);
     padding:14px 16px;
   }
@@ -240,21 +247,20 @@
     padding:3px 9px;
     border-radius:999px;
     margin-bottom:8px;
-    color:#fff;
   }
-  .tag.reading{background:var(--blue);}
-  .tag.listening{background:#e07b39;}
+  .tag.reading{background:var(--accent-soft);color:var(--accent-dark);}
+  .tag.listening{background:var(--secondary-soft);color:var(--secondary-dark);}
   .example-card p{margin:0;font-style:italic;line-height:1.45;}
 
   .mnemonic-card{
     margin-top:14px;
-    background:linear-gradient(135deg,#fff3cd,#ffe8a3);
-    color:#4a2f00;
-    border:2px dashed var(--gold-dark);
+    background:var(--accent-soft);
+    color:var(--text);
+    border:2px dashed var(--accent);
     border-radius:var(--radius);
     padding:16px 18px;
   }
-  .mnemonic-card h4{color:#8a5a00;margin:0 0 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;}
+  .mnemonic-card h4{color:var(--accent-dark);margin:0 0 8px;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;}
   .mnemonic-card p{margin:0;line-height:1.5;}
 
   .syn-row{
@@ -265,8 +271,8 @@
     flex-wrap:wrap;
   }
   .syn-row .syn-pill{
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.3);
+    background:var(--neutral-soft);
+    border:1px solid var(--border);
     border-radius:999px;
     padding:6px 14px;
     font-size:.9rem;
@@ -278,49 +284,83 @@
     align-items:center;
     gap:8px;
     padding:11px 18px;
-    background:#d63031;
+    background:var(--secondary);
     color:#fff;
     text-decoration:none;
     border-radius:10px;
     font-weight:700;
     font-size:.9rem;
   }
-  .youglish-btn:hover{background:#b02a2a;}
+  .youglish-btn:hover{background:var(--secondary-dark);}
 
   /* timer panels */
   .timer-panel{display:none;text-align:center;}
   .timer-panel.active{display:block;}
-  .timer-panel h3{margin:0 0 12px;font-size:1rem;color:var(--gold);}
-  .progress-track{
-    width:100%;
-    height:14px;
-    border-radius:999px;
-    background:rgba(255,255,255,.2);
-    overflow:hidden;
+  .timer-panel h3{margin:0 0 12px;font-size:1rem;color:var(--accent-dark);}
+
+  .circle-timer{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:6px solid var(--accent);
+    background:var(--surface);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    margin:6px auto 12px;
+    transition:border-color .3s, color .3s;
+  }
+  .circle-timer .circle-num{font-size:2rem;font-weight:800;color:var(--accent-dark);line-height:1;}
+  .circle-timer .circle-unit{font-size:.72rem;color:var(--text-soft);}
+  .circle-timer.done{border-color:var(--warn);}
+  .circle-timer.done .circle-num{color:var(--warn);}
+
+  .timer-msg{
+    min-height:22px;
+    font-size:.9rem;
+    font-weight:700;
+    color:var(--warn);
     margin-bottom:10px;
   }
-  .progress-fill{
-    height:100%;
-    width:100%;
-    background:linear-gradient(90deg, var(--gold), #ff7b54);
-    border-radius:999px;
+
+  .timer-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
   }
-  .timer-text{font-size:.85rem;opacity:.85;margin-bottom:14px;}
+
   .secondary-btn{
     padding:11px 22px;
-    border:1.5px solid var(--gold);
+    border:1.5px solid var(--accent);
     background:transparent;
-    color:var(--gold);
+    color:var(--accent-dark);
     border-radius:10px;
     font-weight:700;
     cursor:pointer;
     font-size:.9rem;
   }
-  .secondary-btn:hover{background:var(--gold);color:#2b0a3d;}
+  .secondary-btn:hover:not(:disabled){background:var(--accent);color:#fff;}
+  .secondary-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  .primary-btn{
+    padding:11px 22px;
+    border:none;
+    background:var(--accent);
+    color:#fff;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    font-size:.9rem;
+  }
+  .primary-btn:hover:not(:disabled){background:var(--accent-dark);}
+  .primary-btn:disabled{opacity:.4;cursor:not-allowed;}
 
   .question-text{
-    background:rgba(255,255,255,.95);
-    color:var(--text-dark);
+    background:var(--neutral-soft);
+    color:var(--text);
+    border:1px solid var(--border);
     border-radius:var(--radius);
     padding:16px 18px;
     margin-bottom:14px;
@@ -331,9 +371,9 @@
     width:100%;
     min-height:110px;
     border-radius:12px;
-    border:1.5px solid rgba(255,255,255,.4);
-    background:rgba(255,255,255,.95);
-    color:var(--text-dark);
+    border:1.5px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
     padding:12px 14px;
     font-size:.98rem;
     font-family:inherit;
@@ -350,9 +390,9 @@
     border-radius:var(--radius);
     margin-bottom:16px;
   }
-  .feedback-msg.pass{background:rgba(31,157,85,.25);border:2px solid var(--green);color:#8ff0b6;}
-  .feedback-msg.fail{background:rgba(214,48,49,.25);border:2px solid var(--red);color:#ffb3b3;}
-  .feedback-detail{font-size:.85rem;opacity:.85;margin-bottom:16px;}
+  .feedback-msg.pass{background:var(--secondary-soft);border:2px solid var(--secondary);color:var(--secondary-dark);}
+  .feedback-msg.fail{background:var(--warn-soft);border:2px solid var(--warn);color:var(--warn);}
+  .feedback-detail{font-size:.85rem;opacity:.8;margin-bottom:16px;}
 
   footer{
     text-align:center;
@@ -372,26 +412,43 @@
 
 <header>
   <h1>🎰 Tragamonedas de Vocabulario Académico</h1>
-  <p>IELTS &amp; TOEFL — Practica vocabulario de alta frecuencia girando la palanca</p>
+  <p>IELTS/TOEFL &amp; DELF/DALF — Practica vocabulario de alta frecuencia girando la palanca</p>
 </header>
 
 <main>
   <section class="panel">
     <div class="filters-grid">
       <div class="filter-group">
-        <h3>Nivel de dificultad</h3>
+        <h3>Examen</h3>
+        <div class="option-row" id="examGroup">
+          <div class="option-btn">
+            <input type="radio" name="exam" id="exam-ielts" value="ielts" checked>
+            <label for="exam-ielts">IELTS / TOEFL (inglés)</label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="exam" id="exam-delf" value="delf">
+            <label for="exam-delf">DELF / DALF (francés)</label>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <h3>Nivel (CEFR)</h3>
         <div class="option-row" id="levelGroup">
           <div class="option-btn">
-            <input type="radio" name="level" id="lvl-basico" value="basico" checked>
-            <label for="lvl-basico">Básico (B2)</label>
+            <input type="radio" name="level" id="lvl-b1" value="b1">
+            <label for="lvl-b1">B1</label>
           </div>
           <div class="option-btn">
-            <input type="radio" name="level" id="lvl-intermedio" value="intermedio">
-            <label for="lvl-intermedio">Intermedio (C1)</label>
+            <input type="radio" name="level" id="lvl-b2" value="b2" checked>
+            <label for="lvl-b2">B2</label>
           </div>
           <div class="option-btn">
-            <input type="radio" name="level" id="lvl-avanzado" value="avanzado">
-            <label for="lvl-avanzado">Avanzado (C2 / baja frecuencia)</label>
+            <input type="radio" name="level" id="lvl-c1" value="c1">
+            <label for="lvl-c1">C1</label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="level" id="lvl-c2" value="c2">
+            <label for="lvl-c2">C2</label>
           </div>
         </div>
       </div>
@@ -426,7 +483,8 @@
       <div class="word" id="resWord"></div>
       <div class="badges">
         <span class="badge" id="resPos"></span>
-        <span class="badge" id="resLevel"></span>
+        <span class="badge badge-exam" id="resExam"></span>
+        <span class="badge badge-level" id="resLevel"></span>
         <span class="badge" id="resTopic"></span>
       </div>
     </div>
@@ -438,11 +496,11 @@
 
     <div class="examples-grid">
       <div class="example-card">
-        <span class="tag reading">Reading / Writing</span>
+        <span class="tag reading" id="resTagReading">Reading / Writing</span>
         <p id="resExReading"></p>
       </div>
       <div class="example-card">
-        <span class="tag listening">Listening / Speaking</span>
+        <span class="tag listening" id="resTagListening">Listening / Speaking</span>
         <p id="resExListening"></p>
       </div>
     </div>
@@ -460,9 +518,15 @@
 
     <div class="timer-panel" id="analyzeTimerPanel" style="margin-top:22px;">
       <h3>⏱ Tiempo para analizar</h3>
-      <div class="progress-track"><div class="progress-fill" id="analyzeFill"></div></div>
-      <div class="timer-text" id="analyzeText">30s</div>
-      <button class="secondary-btn" id="analyzeDoneBtn">Listo, continuar</button>
+      <div class="circle-timer" id="analyzeCircle">
+        <span class="circle-num" id="analyzeNum">30</span>
+        <span class="circle-unit">segundos</span>
+      </div>
+      <div class="timer-msg" id="analyzeMsg"></div>
+      <div class="timer-actions">
+        <button class="primary-btn" id="analyzeStartBtn">Iniciar tiempo de análisis</button>
+        <button class="secondary-btn" id="analyzeDoneBtn">Terminar antes</button>
+      </div>
     </div>
   </section>
 
@@ -470,9 +534,15 @@
     <h3 style="text-align:center;">✍️ Pregunta de práctica</h3>
     <div class="question-text" id="questionText"></div>
     <textarea id="answerInput" placeholder="Escribe tu respuesta aquí (mínimo 8 palabras, usando la palabra objetivo o una variante)..."></textarea>
-    <div class="progress-track"><div class="progress-fill" id="answerFill"></div></div>
-    <div class="timer-text" id="answerText">60s</div>
-    <button class="secondary-btn" id="submitAnswerBtn">Enviar respuesta</button>
+    <div class="circle-timer" id="answerCircle">
+      <span class="circle-num" id="answerNum">60</span>
+      <span class="circle-unit">segundos</span>
+    </div>
+    <div class="timer-msg" id="answerMsg"></div>
+    <div class="timer-actions">
+      <button class="primary-btn" id="answerStartBtn">Iniciar tiempo de respuesta</button>
+      <button class="secondary-btn" id="submitAnswerBtn">Enviar respuesta</button>
+    </div>
   </section>
 
   <section class="panel feedback-panel" id="feedbackSection">
@@ -483,7 +553,7 @@
 </main>
 
 <footer>
-  Banco de 60 palabras académicas · Los ejemplos de examen siempre se muestran en inglés (material auténtico IELTS/TOEFL). El resto del contenido sigue el idioma seleccionado.
+  Banco de 120 palabras académicas (60 IELTS/TOEFL + 60 DELF/DALF) · Los ejemplos de examen siempre se muestran en el idioma del examen elegido (material auténtico). El resto del contenido sigue el idioma seleccionado.
 </footer>
 
 <script>
@@ -491,7 +561,7 @@
 // WORD BANK (60 words, embedded, no external fetch)
 // ---------------------------------------------------------------
 const WORD_BANK = [
-{w:"significant",pos:"adjective",level:"basico",topic:"science",
+{w:"significant",pos:"adjective",exam:"ielts",level:"b2",topic:"science",
  def:{en:"Important or large enough to have a noticeable effect or meaning.",
       fr:"Suffisamment important pour avoir un effet ou une signification notable.",
       es:"Suficientemente importante como para tener un efecto o significado notable."},
@@ -505,7 +575,7 @@ const WORD_BANK = [
     fr:"Quelle est une decision significative que vous avez prise dans votre vie?",
     es:"Cual es una decision significativa que has tomado en tu vida?"}},
 
-{w:"approach",pos:"noun / verb",level:"basico",topic:"education",
+{w:"approach",pos:"noun / verb",exam:"ielts",level:"b2",topic:"education",
  def:{en:"A way of dealing with a situation or problem; to come near to something.",
       fr:"Une maniere de traiter une situation ou un probleme; se rapprocher de quelque chose.",
       es:"Una forma de abordar una situacion o problema; acercarse a algo."},
@@ -519,7 +589,7 @@ const WORD_BANK = [
     fr:"Quelle approche utiliseriez-vous pour aider un ami en difficulte scolaire?",
     es:"Que enfoque usarias para ayudar a un amigo con dificultades academicas?"}},
 
-{w:"factor",pos:"noun",level:"basico",topic:"economy",
+{w:"factor",pos:"noun",exam:"ielts",level:"b2",topic:"economy",
  def:{en:"One of several things that influence or cause a situation.",
       fr:"Un des elements qui influencent ou provoquent une situation.",
       es:"Uno de varios elementos que influyen o causan una situacion."},
@@ -533,7 +603,7 @@ const WORD_BANK = [
     fr:"Quel est le facteur le plus important lors du choix d'une carriere?",
     es:"Cual es el factor mas importante al elegir una carrera?"}},
 
-{w:"issue",pos:"noun / verb",level:"basico",topic:"society",
+{w:"issue",pos:"noun / verb",exam:"ielts",level:"b2",topic:"society",
  def:{en:"An important topic or problem for debate; or to officially give out something.",
       fr:"Un sujet ou probleme important a debattre; ou delivrer officiellement quelque chose.",
       es:"Un tema o problema importante para debatir; o emitir algo oficialmente."},
@@ -547,7 +617,7 @@ const WORD_BANK = [
     fr:"Decrivez un probleme social qui vous preoccupe et expliquez pourquoi.",
     es:"Describe un problema social que te preocupe y explica por que."}},
 
-{w:"impact",pos:"noun / verb",level:"basico",topic:"environment",
+{w:"impact",pos:"noun / verb",exam:"ielts",level:"b2",topic:"environment",
  def:{en:"A powerful effect that something has on someone or something else.",
       fr:"Un effet puissant que quelque chose a sur quelqu'un ou autre chose.",
       es:"Un efecto poderoso que algo tiene sobre alguien o algo mas."},
@@ -561,7 +631,7 @@ const WORD_BANK = [
     fr:"Quel impact les reseaux sociaux ont-ils sur les adolescents?",
     es:"Que impacto tienen las redes sociales en los adolescentes?"}},
 
-{w:"process",pos:"noun / verb",level:"basico",topic:"science",
+{w:"process",pos:"noun / verb",exam:"ielts",level:"b2",topic:"science",
  def:{en:"A series of actions taken to achieve a particular result.",
       fr:"Une serie d'actions entreprises pour atteindre un resultat particulier.",
       es:"Una serie de acciones realizadas para lograr un resultado particular."},
@@ -575,7 +645,7 @@ const WORD_BANK = [
     fr:"Decrivez le processus que vous suivez pour apprendre une nouvelle competence.",
     es:"Describe el proceso que sigues al aprender una nueva habilidad."}},
 
-{w:"resource",pos:"noun",level:"basico",topic:"environment",
+{w:"resource",pos:"noun",exam:"ielts",level:"b2",topic:"environment",
  def:{en:"A supply of something useful, such as money, materials, or energy.",
       fr:"Une reserve de quelque chose d'utile, comme l'argent, les materiaux ou l'energie.",
       es:"Una reserva de algo util, como dinero, materiales o energia."},
@@ -589,7 +659,7 @@ const WORD_BANK = [
     fr:"Selon vous, quelle ressource naturelle est la plus importante a proteger?",
     es:"En tu opinion, que recurso natural es mas importante proteger?"}},
 
-{w:"benefit",pos:"noun / verb",level:"basico",topic:"health",
+{w:"benefit",pos:"noun / verb",exam:"ielts",level:"b2",topic:"health",
  def:{en:"An advantage or profit gained from something.",
       fr:"Un avantage ou profit tire de quelque chose.",
       es:"Una ventaja o beneficio obtenido de algo."},
@@ -603,7 +673,7 @@ const WORD_BANK = [
     fr:"Quel est un avantage a apprendre une langue etrangere?",
     es:"Cual es un beneficio de aprender un idioma extranjero?"}},
 
-{w:"require",pos:"verb",level:"basico",topic:"education",
+{w:"require",pos:"verb",exam:"ielts",level:"b2",topic:"education",
  def:{en:"To need something or make something necessary.",
       fr:"Avoir besoin de quelque chose ou rendre quelque chose necessaire.",
       es:"Necesitar algo o hacer que algo sea necesario."},
@@ -617,7 +687,7 @@ const WORD_BANK = [
     fr:"Quelles competences sont requises pour devenir un bon leader?",
     es:"Que habilidades se requieren para ser un buen lider?"}},
 
-{w:"environment",pos:"noun",level:"basico",topic:"environment",
+{w:"environment",pos:"noun",exam:"ielts",level:"b2",topic:"environment",
  def:{en:"The natural world, or the surrounding conditions in which someone lives or works.",
       fr:"Le monde naturel, ou les conditions environnantes dans lesquelles quelqu'un vit ou travaille.",
       es:"El mundo natural, o las condiciones que rodean a alguien en su vida o trabajo."},
@@ -631,7 +701,7 @@ const WORD_BANK = [
     fr:"Que peuvent faire les individus pour proteger l'environnement?",
     es:"Que pueden hacer los individuos para proteger el medio ambiente?"}},
 
-{w:"available",pos:"adjective",level:"basico",topic:"technology",
+{w:"available",pos:"adjective",exam:"ielts",level:"b2",topic:"technology",
  def:{en:"Able to be used or obtained; free to do something.",
       fr:"Qui peut etre utilise ou obtenu; libre de faire quelque chose.",
       es:"Que puede ser usado u obtenido; libre para hacer algo."},
@@ -645,7 +715,7 @@ const WORD_BANK = [
     fr:"Quelles ressources sont disponibles pour les etudiants qui ont besoin d'aide supplementaire?",
     es:"Que recursos estan disponibles para los estudiantes que necesitan ayuda extra?"}},
 
-{w:"establish",pos:"verb",level:"basico",topic:"society",
+{w:"establish",pos:"verb",exam:"ielts",level:"b2",topic:"society",
  def:{en:"To set up or create something on a firm or permanent basis.",
       fr:"Mettre en place ou creer quelque chose sur une base solide ou permanente.",
       es:"Fundar o crear algo sobre una base firme o permanente."},
@@ -659,7 +729,7 @@ const WORD_BANK = [
     fr:"Quelles regles etabliriez-vous pour ameliorer votre lieu de travail?",
     es:"Que reglas establecerias para mejorar tu lugar de trabajo?"}},
 
-{w:"maintain",pos:"verb",level:"basico",topic:"health",
+{w:"maintain",pos:"verb",exam:"ielts",level:"b2",topic:"health",
  def:{en:"To keep something in good condition or continue an existing state.",
       fr:"Garder quelque chose en bon etat ou continuer un etat existant.",
       es:"Mantener algo en buen estado o continuar un estado existente."},
@@ -673,7 +743,7 @@ const WORD_BANK = [
     fr:"Que faites-vous pour maintenir un mode de vie sain?",
     es:"Que haces para mantener un estilo de vida saludable?"}},
 
-{w:"individual",pos:"noun / adjective",level:"basico",topic:"society",
+{w:"individual",pos:"noun / adjective",exam:"ielts",level:"b2",topic:"society",
  def:{en:"A single person considered separately from a group; personal or distinct.",
       fr:"Une personne consideree separement d'un groupe; personnel ou distinct.",
       es:"Una persona considerada por separado de un grupo; personal o distinto."},
@@ -687,7 +757,7 @@ const WORD_BANK = [
     fr:"Pensez-vous que l'effort individuel compte plus que le travail d'equipe? Pourquoi?",
     es:"Crees que el esfuerzo individual importa mas que el trabajo en equipo? Por que?"}},
 
-{w:"previous",pos:"adjective",level:"basico",topic:"education",
+{w:"previous",pos:"adjective",exam:"ielts",level:"b2",topic:"education",
  def:{en:"Existing or happening before the time or event being discussed.",
       fr:"Qui existe ou se produit avant le moment ou l'evenement dont on parle.",
       es:"Que existe u ocurre antes del momento o evento del que se habla."},
@@ -701,7 +771,7 @@ const WORD_BANK = [
     fr:"Quelle etait votre experience precedente avec l'apprentissage de l'anglais?",
     es:"Cual fue tu experiencia previa aprendiendo ingles?"}},
 
-{w:"context",pos:"noun",level:"basico",topic:"education",
+{w:"context",pos:"noun",exam:"ielts",level:"b2",topic:"education",
  def:{en:"The circumstances that form the setting for an event, statement, or idea.",
       fr:"Les circonstances qui forment le cadre d'un evenement, d'une declaration ou d'une idee.",
       es:"Las circunstancias que forman el marco de un evento, declaracion o idea."},
@@ -715,7 +785,7 @@ const WORD_BANK = [
     fr:"Pourquoi le contexte est-il important pour interpreter une nouvelle?",
     es:"Por que es importante el contexto al interpretar una noticia?"}},
 
-{w:"method",pos:"noun",level:"basico",topic:"science",
+{w:"method",pos:"noun",exam:"ielts",level:"b2",topic:"science",
  def:{en:"A particular procedure or systematic way of doing something.",
       fr:"Une procedure particuliere ou une maniere systematique de faire quelque chose.",
       es:"Un procedimiento particular o una forma sistematica de hacer algo."},
@@ -729,7 +799,7 @@ const WORD_BANK = [
     fr:"Quelle methode utilisez-vous pour memoriser du nouveau vocabulaire?",
     es:"Que metodo usas para memorizar vocabulario nuevo?"}},
 
-{w:"concept",pos:"noun",level:"basico",topic:"education",
+{w:"concept",pos:"noun",exam:"ielts",level:"b2",topic:"education",
  def:{en:"An abstract idea or general notion about something.",
       fr:"Une idee abstraite ou notion generale sur quelque chose.",
       es:"Una idea abstracta o nocion general sobre algo."},
@@ -743,7 +813,7 @@ const WORD_BANK = [
     fr:"Expliquez un concept scolaire que vous avez trouve difficile a comprendre.",
     es:"Explica un concepto escolar que te resulto dificil de entender."}},
 
-{w:"evidence",pos:"noun",level:"basico",topic:"science",
+{w:"evidence",pos:"noun",exam:"ielts",level:"b2",topic:"science",
  def:{en:"Facts or signs that indicate whether something is true or valid.",
       fr:"Des faits ou signes indiquant si quelque chose est vrai ou valide.",
       es:"Hechos o senales que indican si algo es verdadero o valido."},
@@ -757,7 +827,7 @@ const WORD_BANK = [
     fr:"Quelle preuve vous convaincrait qu'un regime est vraiment sain?",
     es:"Que evidencia te convenceria de que una dieta es realmente saludable?"}},
 
-{w:"potential",pos:"adjective / noun",level:"basico",topic:"economy",
+{w:"potential",pos:"adjective / noun",exam:"ielts",level:"b2",topic:"economy",
  def:{en:"Having the capacity to develop into something in the future.",
       fr:"Ayant la capacite de se developper en quelque chose a l'avenir.",
       es:"Que tiene la capacidad de convertirse en algo en el futuro."},
@@ -771,7 +841,7 @@ const WORD_BANK = [
     fr:"Quel potentiel voyez-vous dans les energies renouvelables pour l'avenir?",
     es:"Que potencial ves en las energias renovables para el futuro?"}},
 
-{w:"substantial",pos:"adjective",level:"intermedio",topic:"economy",
+{w:"substantial",pos:"adjective",exam:"ielts",level:"c1",topic:"economy",
  def:{en:"Of considerable importance, size, or value.",
       fr:"D'une importance, taille ou valeur considerable.",
       es:"De considerable importancia, tamano o valor."},
@@ -785,7 +855,7 @@ const WORD_BANK = [
     fr:"Decrivez un changement substantiel que vous feriez dans votre routine quotidienne.",
     es:"Describe un cambio sustancial que harias en tu rutina diaria."}},
 
-{w:"facilitate",pos:"verb",level:"intermedio",topic:"education",
+{w:"facilitate",pos:"verb",exam:"ielts",level:"c1",topic:"education",
  def:{en:"To make an action or process easier.",
       fr:"Rendre une action ou un processus plus facile.",
       es:"Hacer que una accion o proceso sea mas facil."},
@@ -799,7 +869,7 @@ const WORD_BANK = [
     fr:"Comment la technologie peut-elle faciliter la communication entre differentes cultures?",
     es:"Como puede la tecnologia facilitar la comunicacion entre diferentes culturas?"}},
 
-{w:"implement",pos:"verb / noun",level:"intermedio",topic:"technology",
+{w:"implement",pos:"verb / noun",exam:"ielts",level:"c1",topic:"technology",
  def:{en:"To put a plan or decision into effect.",
       fr:"Mettre en oeuvre un plan ou une decision.",
       es:"Poner en practica un plan o decision."},
@@ -813,7 +883,7 @@ const WORD_BANK = [
     fr:"Quels changements mettriez-vous en oeuvre pour ameliorer les transports publics?",
     es:"Que cambios implementarias para mejorar el transporte publico?"}},
 
-{w:"inevitable",pos:"adjective",level:"intermedio",topic:"society",
+{w:"inevitable",pos:"adjective",exam:"ielts",level:"c1",topic:"society",
  def:{en:"Certain to happen; impossible to avoid.",
       fr:"Certain de se produire; impossible a eviter.",
       es:"Seguro que ocurrira; imposible de evitar."},
@@ -827,7 +897,7 @@ const WORD_BANK = [
     fr:"Pensez-vous que les effets du changement climatique sont desormais inevitables? Pourquoi?",
     es:"Crees que los efectos del cambio climatico ya son inevitables? Por que?"}},
 
-{w:"controversial",pos:"adjective",level:"intermedio",topic:"society",
+{w:"controversial",pos:"adjective",exam:"ielts",level:"c1",topic:"society",
  def:{en:"Causing public disagreement or heated debate.",
       fr:"Provoquant un desaccord public ou un debat houleux.",
       es:"Que provoca desacuerdo publico o un debate acalorado."},
@@ -841,7 +911,7 @@ const WORD_BANK = [
     fr:"Choisissez un sujet controverse et expliquez brievement les deux cotes.",
     es:"Elige un tema controversial y explica brevemente ambos lados."}},
 
-{w:"sustainable",pos:"adjective",level:"intermedio",topic:"environment",
+{w:"sustainable",pos:"adjective",exam:"ielts",level:"c1",topic:"environment",
  def:{en:"Able to continue over time without depleting resources or causing harm.",
       fr:"Capable de perdurer sans epuiser les ressources ni causer de dommages.",
       es:"Que puede mantenerse en el tiempo sin agotar recursos ni causar dano."},
@@ -855,7 +925,7 @@ const WORD_BANK = [
     fr:"Quelles habitudes durables avez-vous adoptees dans votre vie quotidienne?",
     es:"Que habitos sostenibles has adoptado en tu vida diaria?"}},
 
-{w:"phenomenon",pos:"noun",level:"intermedio",topic:"science",
+{w:"phenomenon",pos:"noun",exam:"ielts",level:"c1",topic:"science",
  def:{en:"A fact or event, especially one that is unusual or notable.",
       fr:"Un fait ou evenement, surtout s'il est inhabituel ou remarquable.",
       es:"Un hecho o suceso, especialmente si es inusual o notable."},
@@ -869,7 +939,7 @@ const WORD_BANK = [
     fr:"Decrivez un phenomene naturel inhabituel que vous trouvez fascinant.",
     es:"Describe un fenomeno natural inusual que te parezca fascinante."}},
 
-{w:"hypothesis",pos:"noun",level:"intermedio",topic:"science",
+{w:"hypothesis",pos:"noun",exam:"ielts",level:"c1",topic:"science",
  def:{en:"A proposed explanation made on limited evidence, to be tested further.",
       fr:"Une explication proposee sur la base de preuves limitees, a tester davantage.",
       es:"Una explicacion propuesta con base en evidencia limitada, a probar mas adelante."},
@@ -883,7 +953,7 @@ const WORD_BANK = [
     fr:"Quelle hypothese testeriez-vous si vous concevriez une experience scientifique?",
     es:"Que hipotesis probarias si disenaras un experimento cientifico?"}},
 
-{w:"consequence",pos:"noun",level:"intermedio",topic:"environment",
+{w:"consequence",pos:"noun",exam:"ielts",level:"c1",topic:"environment",
  def:{en:"A result or effect of an action or condition.",
       fr:"Un resultat ou effet d'une action ou d'une condition.",
       es:"Un resultado o efecto de una accion o condicion."},
@@ -897,7 +967,7 @@ const WORD_BANK = [
     fr:"Quelle consequence resulterait du fait d'ignorer les avertissements climatiques?",
     es:"Que consecuencia resultaria de ignorar las advertencias climaticas?"}},
 
-{w:"contribute",pos:"verb",level:"intermedio",topic:"economy",
+{w:"contribute",pos:"verb",exam:"ielts",level:"c1",topic:"economy",
  def:{en:"To give something, especially money or effort, in order to help achieve something.",
       fr:"Donner quelque chose, notamment de l'argent ou des efforts, pour aider a atteindre un objectif.",
       es:"Dar algo, especialmente dinero o esfuerzo, para ayudar a lograr algo."},
@@ -911,7 +981,7 @@ const WORD_BANK = [
     fr:"Comment les individus peuvent-ils contribuer a reduire la pollution plastique?",
     es:"Como pueden los individuos contribuir a reducir la contaminacion por plastico?"}},
 
-{w:"undermine",pos:"verb",level:"intermedio",topic:"society",
+{w:"undermine",pos:"verb",exam:"ielts",level:"c1",topic:"society",
  def:{en:"To weaken or damage something gradually, often secretly.",
       fr:"Affaiblir ou endommager quelque chose progressivement, souvent secretement.",
       es:"Debilitar o danar algo gradualmente, a menudo en secreto."},
@@ -925,7 +995,7 @@ const WORD_BANK = [
     fr:"Quelles actions peuvent miner la confiance entre amis?",
     es:"Que acciones pueden socavar la confianza entre amigos?"}},
 
-{w:"comprehensive",pos:"adjective",level:"intermedio",topic:"education",
+{w:"comprehensive",pos:"adjective",exam:"ielts",level:"c1",topic:"education",
  def:{en:"Complete and including everything that is necessary.",
       fr:"Complet et incluant tout ce qui est necessaire.",
       es:"Completo e incluyendo todo lo necesario."},
@@ -939,7 +1009,7 @@ const WORD_BANK = [
     fr:"Qu'inclurait un plan complet pour lutter contre la pauvrete?",
     es:"Que incluiria un plan integral para combatir la pobreza?"}},
 
-{w:"adverse",pos:"adjective",level:"intermedio",topic:"health",
+{w:"adverse",pos:"adjective",exam:"ielts",level:"c1",topic:"health",
  def:{en:"Harmful or unfavorable in effect.",
       fr:"Nuisible ou defavorable dans ses effets.",
       es:"Danino o desfavorable en su efecto."},
@@ -953,7 +1023,7 @@ const WORD_BANK = [
     fr:"Quels effets nefastes trop de temps d'ecran peut-il avoir sur la sante?",
     es:"Que efectos adversos puede tener demasiado tiempo frente a pantallas en la salud?"}},
 
-{w:"innovative",pos:"adjective",level:"intermedio",topic:"technology",
+{w:"innovative",pos:"adjective",exam:"ielts",level:"c1",topic:"technology",
  def:{en:"Introducing new ideas, methods, or products.",
       fr:"Introduisant de nouvelles idees, methodes ou produits.",
       es:"Que introduce nuevas ideas, metodos o productos."},
@@ -967,7 +1037,7 @@ const WORD_BANK = [
     fr:"Decrivez une solution innovante pour reduire la circulation dans les grandes villes.",
     es:"Describe una solucion innovadora para reducir el trafico en las grandes ciudades."}},
 
-{w:"denote",pos:"verb",level:"intermedio",topic:"science",
+{w:"denote",pos:"verb",exam:"ielts",level:"c1",topic:"science",
  def:{en:"To be a sign of; to indicate or represent something.",
       fr:"Etre un signe de; indiquer ou representer quelque chose.",
       es:"Ser una senal de; indicar o representar algo."},
@@ -981,7 +1051,7 @@ const WORD_BANK = [
     fr:"Que denote generalement un grand nombre de likes sur les reseaux sociaux?",
     es:"Que suele denotar un gran numero de me gusta en redes sociales?"}},
 
-{w:"plausible",pos:"adjective",level:"intermedio",topic:"science",
+{w:"plausible",pos:"adjective",exam:"ielts",level:"c1",topic:"science",
  def:{en:"Seeming reasonable or probable, likely to be true.",
       fr:"Qui semble raisonnable ou probable, susceptible d'etre vrai.",
       es:"Que parece razonable o probable, posiblemente cierto."},
@@ -995,7 +1065,7 @@ const WORD_BANK = [
     fr:"Quelle est l'explication la plus plausible pour l'annulation de la reunion?",
     es:"Cual es la explicacion mas plausible para que se cancelara la reunion?"}},
 
-{w:"inherent",pos:"adjective",level:"intermedio",topic:"society",
+{w:"inherent",pos:"adjective",exam:"ielts",level:"c1",topic:"society",
  def:{en:"Existing as a natural or essential part of something.",
       fr:"Existant comme une partie naturelle ou essentielle de quelque chose.",
       es:"Que existe como parte natural o esencial de algo."},
@@ -1009,7 +1079,7 @@ const WORD_BANK = [
     fr:"Quels risques sont inherents au fait de creer sa propre entreprise?",
     es:"Que riesgos son inherentes a empezar tu propio negocio?"}},
 
-{w:"mitigate",pos:"verb",level:"intermedio",topic:"environment",
+{w:"mitigate",pos:"verb",exam:"ielts",level:"c1",topic:"environment",
  def:{en:"To make something less severe, serious, or painful.",
       fr:"Rendre quelque chose moins grave, serieux ou douloureux.",
       es:"Hacer que algo sea menos grave, serio o doloroso."},
@@ -1023,7 +1093,7 @@ const WORD_BANK = [
     fr:"Quelles mesures les villes peuvent-elles prendre pour attenuer les effets des chaleurs extremes?",
     es:"Que medidas pueden tomar las ciudades para mitigar los efectos del calor extremo?"}},
 
-{w:"paradigm",pos:"noun",level:"intermedio",topic:"science",
+{w:"paradigm",pos:"noun",exam:"ielts",level:"c1",topic:"science",
  def:{en:"A typical example or pattern of something; a model.",
       fr:"Un exemple ou modele typique de quelque chose.",
       es:"Un ejemplo o modelo tipico de algo."},
@@ -1037,7 +1107,7 @@ const WORD_BANK = [
     fr:"Quel changement de paradigme attendez-vous de la technologie dans la prochaine decennie?",
     es:"Que cambio de paradigma esperas que traiga la tecnologia en la proxima decada?"}},
 
-{w:"discrepancy",pos:"noun",level:"intermedio",topic:"science",
+{w:"discrepancy",pos:"noun",exam:"ielts",level:"c1",topic:"science",
  def:{en:"A difference or inconsistency between facts or figures that should match.",
       fr:"Une difference ou incoherence entre des faits ou chiffres qui devraient correspondre.",
       es:"Una diferencia o incoherencia entre hechos o cifras que deberian coincidir."},
@@ -1051,7 +1121,7 @@ const WORD_BANK = [
     fr:"Decrivez une divergence que vous avez remarquee entre un plan et son resultat reel.",
     es:"Describe una discrepancia que hayas notado entre un plan y su resultado real."}},
 
-{w:"ubiquitous",pos:"adjective",level:"avanzado",topic:"technology",
+{w:"ubiquitous",pos:"adjective",exam:"ielts",level:"c2",topic:"technology",
  def:{en:"Present, appearing, or found everywhere at the same time.",
       fr:"Present, apparaissant ou se trouvant partout en meme temps.",
       es:"Presente, que aparece o se encuentra en todas partes al mismo tiempo."},
@@ -1065,7 +1135,7 @@ const WORD_BANK = [
     fr:"Quelle technologie est devenue omnipresente dans votre vie quotidienne?",
     es:"Que tecnologia se ha vuelto ubicua en tu vida diaria?"}},
 
-{w:"ephemeral",pos:"adjective",level:"avanzado",topic:"society",
+{w:"ephemeral",pos:"adjective",exam:"ielts",level:"c2",topic:"society",
  def:{en:"Lasting for only a very short time.",
       fr:"Ne durant que tres peu de temps.",
       es:"Que dura muy poco tiempo."},
@@ -1079,7 +1149,7 @@ const WORD_BANK = [
     fr:"Decrivez quelque chose dans la culture moderne qui vous semble ephemere.",
     es:"Describe algo en la cultura moderna que te parezca efimero."}},
 
-{w:"exacerbate",pos:"verb",level:"avanzado",topic:"environment",
+{w:"exacerbate",pos:"verb",exam:"ielts",level:"c2",topic:"environment",
  def:{en:"To make a problem or situation worse.",
       fr:"Aggraver un probleme ou une situation.",
       es:"Empeorar un problema o situacion."},
@@ -1093,7 +1163,7 @@ const WORD_BANK = [
     fr:"Quelles actions pourraient aggraver le probleme de la pollution atmospherique urbaine?",
     es:"Que acciones podrian exacerbar el problema de la contaminacion del aire urbano?"}},
 
-{w:"pragmatic",pos:"adjective",level:"avanzado",topic:"economy",
+{w:"pragmatic",pos:"adjective",exam:"ielts",level:"c2",topic:"economy",
  def:{en:"Dealing with things in a practical, sensible way rather than idealistically.",
       fr:"Traiter les choses de maniere pratique et sensee plutot qu'idealiste.",
       es:"Tratar las cosas de manera practica y sensata en lugar de idealista."},
@@ -1107,7 +1177,7 @@ const WORD_BANK = [
     fr:"Pourquoi est-il important d'etre pragmatique dans la gestion de ses finances personnelles?",
     es:"Por que es importante ser pragmatico al administrar las finanzas personales?"}},
 
-{w:"ambiguous",pos:"adjective",level:"avanzado",topic:"education",
+{w:"ambiguous",pos:"adjective",exam:"ielts",level:"c2",topic:"education",
  def:{en:"Open to more than one interpretation; not clearly defined.",
       fr:"Ouvert a plusieurs interpretations; pas clairement defini.",
       es:"Que admite mas de una interpretacion; no claramente definido."},
@@ -1121,7 +1191,7 @@ const WORD_BANK = [
     fr:"Decrivez un moment ou des instructions ambigues vous ont cause un probleme.",
     es:"Describe un momento en que instrucciones ambiguas te causaron un problema."}},
 
-{w:"dichotomy",pos:"noun",level:"avanzado",topic:"society",
+{w:"dichotomy",pos:"noun",exam:"ielts",level:"c2",topic:"society",
  def:{en:"A division or contrast between two things that are opposed or entirely different.",
       fr:"Une division ou un contraste entre deux choses opposees ou entierement differentes.",
       es:"Una division o contraste entre dos cosas opuestas o completamente diferentes."},
@@ -1135,7 +1205,7 @@ const WORD_BANK = [
     fr:"Quelle dichotomie observez-vous entre la vie en ligne et la vraie vie?",
     es:"Que dicotomia observas entre la vida en linea y la vida real?"}},
 
-{w:"empirical",pos:"adjective",level:"avanzado",topic:"science",
+{w:"empirical",pos:"adjective",exam:"ielts",level:"c2",topic:"science",
  def:{en:"Based on observation or experiment rather than theory.",
       fr:"Base sur l'observation ou l'experimentation plutot que sur la theorie.",
       es:"Basado en la observacion o experimentacion en lugar de la teoria."},
@@ -1149,7 +1219,7 @@ const WORD_BANK = [
     fr:"Pourquoi les preuves empiriques sont-elles importantes pour evaluer un nouveau traitement medical?",
     es:"Por que es importante la evidencia empirica al evaluar un nuevo tratamiento medico?"}},
 
-{w:"juxtapose",pos:"verb",level:"avanzado",topic:"education",
+{w:"juxtapose",pos:"verb",exam:"ielts",level:"c2",topic:"education",
  def:{en:"To place two things side by side, often to compare or contrast them.",
       fr:"Placer deux choses cote a cote, souvent pour les comparer ou les contraster.",
       es:"Colocar dos cosas una junto a otra, a menudo para compararlas o contrastarlas."},
@@ -1163,7 +1233,7 @@ const WORD_BANK = [
     fr:"Decrivez deux idees que vous juxtaposeriez pour argumenter dans un essai.",
     es:"Describe dos ideas que yuxtapondrias para argumentar en un ensayo."}},
 
-{w:"cogent",pos:"adjective",level:"avanzado",topic:"education",
+{w:"cogent",pos:"adjective",exam:"ielts",level:"c2",topic:"education",
  def:{en:"Clear, logical, and convincing.",
       fr:"Clair, logique et convaincant.",
       es:"Claro, logico y convincente."},
@@ -1177,7 +1247,7 @@ const WORD_BANK = [
     fr:"Donnez une raison convaincante pour laquelle les villes devraient investir dans des parcs publics.",
     es:"Da una razon convincente de por que las ciudades deberian invertir en parques publicos."}},
 
-{w:"anomaly",pos:"noun",level:"avanzado",topic:"science",
+{w:"anomaly",pos:"noun",exam:"ielts",level:"c2",topic:"science",
  def:{en:"Something that deviates from what is standard or expected.",
       fr:"Quelque chose qui s'ecarte de ce qui est standard ou attendu.",
       es:"Algo que se desvia de lo estandar o esperado."},
@@ -1191,7 +1261,7 @@ const WORD_BANK = [
     fr:"Decrivez une anomalie que vous avez remarquee dans des donnees ou des resultats.",
     es:"Describe una anomalia que hayas notado alguna vez en datos o resultados."}},
 
-{w:"deleterious",pos:"adjective",level:"avanzado",topic:"health",
+{w:"deleterious",pos:"adjective",exam:"ielts",level:"c2",topic:"health",
  def:{en:"Causing harm or damage, often gradually.",
       fr:"Causant du tort ou des dommages, souvent progressivement.",
       es:"Que causa dano, a menudo de forma gradual."},
@@ -1205,7 +1275,7 @@ const WORD_BANK = [
     fr:"Quelles habitudes peuvent avoir des effets deleteres sur la sante mentale a long terme?",
     es:"Que habitos pueden tener efectos nocivos en la salud mental a largo plazo?"}},
 
-{w:"proliferation",pos:"noun",level:"avanzado",topic:"technology",
+{w:"proliferation",pos:"noun",exam:"ielts",level:"c2",topic:"technology",
  def:{en:"A rapid increase in the number or amount of something.",
       fr:"Une augmentation rapide du nombre ou de la quantite de quelque chose.",
       es:"Un aumento rapido en el numero o cantidad de algo."},
@@ -1219,7 +1289,7 @@ const WORD_BANK = [
     fr:"Qu'est-ce qui a cause la proliferation des services de streaming ces dernieres annees?",
     es:"Que ha causado la proliferacion de servicios de streaming en los ultimos anos?"}},
 
-{w:"tangential",pos:"adjective",level:"avanzado",topic:"education",
+{w:"tangential",pos:"adjective",exam:"ielts",level:"c2",topic:"education",
  def:{en:"Only slightly connected to the main topic; digressive.",
       fr:"Seulement legerement lie au sujet principal; digressif.",
       es:"Solo ligeramente relacionado con el tema principal; que se desvia."},
@@ -1233,7 +1303,7 @@ const WORD_BANK = [
     fr:"Donnez un exemple de commentaire tangentiel qui a fait devier une conversation.",
     es:"Da un ejemplo de un comentario tangencial que desvio una conversacion."}},
 
-{w:"corroborate",pos:"verb",level:"avanzado",topic:"science",
+{w:"corroborate",pos:"verb",exam:"ielts",level:"c2",topic:"science",
  def:{en:"To confirm or give support to a statement, theory, or finding.",
       fr:"Confirmer ou appuyer une declaration, theorie ou decouverte.",
       es:"Confirmar o dar apoyo a una declaracion, teoria o hallazgo."},
@@ -1247,7 +1317,7 @@ const WORD_BANK = [
     fr:"Quel type de preuve corroborerait une affirmation faite dans un article de presse?",
     es:"Que tipo de evidencia corroboraria una afirmacion hecha en un articulo de noticias?"}},
 
-{w:"exemplify",pos:"verb",level:"avanzado",topic:"education",
+{w:"exemplify",pos:"verb",exam:"ielts",level:"c2",topic:"education",
  def:{en:"To be a typical example of something; to illustrate by example.",
       fr:"Etre un exemple typique de quelque chose; illustrer par un exemple.",
       es:"Ser un ejemplo tipico de algo; ilustrar mediante un ejemplo."},
@@ -1261,7 +1331,7 @@ const WORD_BANK = [
     fr:"Donnez une histoire reelle qui illustre la valeur du travail acharne.",
     es:"Da una historia real que ejemplifique el valor del trabajo duro."}},
 
-{w:"precarious",pos:"adjective",level:"avanzado",topic:"economy",
+{w:"precarious",pos:"adjective",exam:"ielts",level:"c2",topic:"economy",
  def:{en:"Not securely held or in a dangerously uncertain position.",
       fr:"Pas solidement tenu ou dans une position dangereusement incertaine.",
       es:"No sostenido con seguridad o en una posicion peligrosamente incierta."},
@@ -1275,7 +1345,7 @@ const WORD_BANK = [
     fr:"Pourquoi beaucoup de jeunes travailleurs font-ils face a un marche du travail precaire?",
     es:"Por que muchos jovenes trabajadores enfrentan hoy un mercado laboral precario?"}},
 
-{w:"innocuous",pos:"adjective",level:"avanzado",topic:"health",
+{w:"innocuous",pos:"adjective",exam:"ielts",level:"c2",topic:"health",
  def:{en:"Not harmful or offensive; harmless.",
       fr:"Pas nuisible ni offensant; inoffensif.",
       es:"No danino ni ofensivo; inofensivo."},
@@ -1289,7 +1359,7 @@ const WORD_BANK = [
     fr:"Decrivez un commentaire qui semblait inoffensif mais qui a ete mal compris.",
     es:"Describe un comentario que parecia inocuo pero fue malinterpretado."}},
 
-{w:"multifaceted",pos:"adjective",level:"avanzado",topic:"society",
+{w:"multifaceted",pos:"adjective",exam:"ielts",level:"c2",topic:"society",
  def:{en:"Having many different aspects or sides.",
       fr:"Ayant de nombreux aspects ou cotes differents.",
       es:"Que tiene muchos aspectos o lados diferentes."},
@@ -1303,7 +1373,7 @@ const WORD_BANK = [
     fr:"Expliquez pourquoi le chomage est un probleme aux multiples facettes a resoudre.",
     es:"Explica por que el desempleo es un problema multifacetico de resolver."}},
 
-{w:"spurious",pos:"adjective",level:"avanzado",topic:"science",
+{w:"spurious",pos:"adjective",exam:"ielts",level:"c2",topic:"science",
  def:{en:"Not genuine or authentic; based on false reasoning.",
       fr:"Pas authentique ou veritable; base sur un faux raisonnement.",
       es:"No genuino ni autentico; basado en un razonamiento falso."},
@@ -1317,7 +1387,7 @@ const WORD_BANK = [
     fr:"Donnez un exemple de correlation fallacieuse dont vous avez entendu parler.",
     es:"Da un ejemplo de una correlacion espuria de la que hayas oido hablar."}},
 
-{w:"vindicate",pos:"verb",level:"avanzado",topic:"society",
+{w:"vindicate",pos:"verb",exam:"ielts",level:"c2",topic:"society",
  def:{en:"To clear someone of blame or suspicion; to prove something right.",
       fr:"Innocenter quelqu'un d'un blame ou d'un soupcon; prouver que quelque chose est juste.",
       es:"Liberar a alguien de culpa o sospecha; demostrar que algo es correcto."},
@@ -1329,7 +1399,847 @@ const WORD_BANK = [
      es:"VINDICAR suena directo al espanol - demostrar que alguien tenia razon o era inocente."},
  q:{en:"Describe a situation where new evidence vindicated someone's reputation.",
     fr:"Decrivez une situation ou de nouvelles preuves ont innocente la reputation de quelqu'un.",
-    es:"Describe una situacion en la que nueva evidencia vindico la reputacion de alguien."}}
+    es:"Describe una situacion en la que nueva evidencia vindico la reputacion de alguien."}},
+
+{w:"environnement",pos:"noun",exam:"delf",level:"b1",topic:"environment",
+ def:{en:"The natural world and the surrounding conditions in which living things exist.",
+      fr:"Le monde naturel et les conditions qui entourent les etres vivants.",
+      es:"El mundo natural y las condiciones que rodean a los seres vivos."},
+ ex:{r:"Selon le rapport, la pollution de l'environnement s'aggrave chaque annee dans les grandes metropoles.",
+     l:"Tu ne trouves pas qu'on devrait faire plus attention a l'environnement au quotidien?"},
+ syn:"milieu naturel",
+ mn:{en:"Think ENVIRON-MENT as environ (around) plus ment (mind) - keep the world around you in mind, your environnement.",
+     fr:"Pensez a environ (autour) plus ment: gardez toujours a l'esprit ce qui vous entoure, votre environnement.",
+     es:"Piensa en environ (alrededor) mas ment: ten siempre en mente lo que te rodea, tu environnement."},
+ q:{en:"What can you personally do to protect the environnement in your city?",
+    fr:"Que pouvez-vous faire personnellement pour proteger l'environnement dans votre ville?",
+    es:"Que puedes hacer personalmente para proteger el environnement en tu ciudad?"}},
+
+{w:"societe",pos:"noun",exam:"delf",level:"b1",topic:"society",
+ def:{en:"A community of people living together, organized under shared customs, laws, or institutions.",
+      fr:"Un ensemble de personnes vivant ensemble, organisees selon des coutumes, lois ou institutions communes.",
+      es:"Un conjunto de personas que viven juntas, organizadas segun costumbres, leyes o instituciones comunes."},
+ ex:{r:"La societe moderne doit faire face a de nombreux defis lies au vieillissement de la population.",
+     l:"Je pense que notre societe evolue trop vite pour certaines personnes agees."},
+ syn:"communaute",
+ mn:{en:"SO-CI-ETE sounds like so, city, eh - imagine an entire city forming one big societe, one society.",
+     fr:"SO-CI-ETE ressemble a so plus cite: imaginez une cite entiere formant une seule societe.",
+     es:"SO-CI-ETE suena a so mas ciudad: imagina toda una ciudad formando una sola societe (sociedad)."},
+ q:{en:"What change would most improve our societe today?",
+    fr:"Quel changement ameliorerait le plus notre societe aujourd'hui?",
+    es:"Que cambio mejoraria mas nuestra societe hoy?"}},
+
+{w:"avantage",pos:"noun",exam:"delf",level:"b1",topic:"economy",
+ def:{en:"A favorable circumstance or benefit that gives someone or something an edge.",
+      fr:"Une circonstance favorable ou un benefice qui donne un atout a quelqu'un ou quelque chose.",
+      es:"Una circunstancia favorable o beneficio que da una ventaja a alguien o algo."},
+ ex:{r:"Le principal avantage du teletravail est la flexibilite des horaires.",
+     l:"Quel est l'avantage de prendre le train plutot que la voiture, selon toi?"},
+ syn:"atout",
+ mn:{en:"AVANT-AGE sounds like avant (before/ahead) - being ahead of others is your avantage.",
+     fr:"AVANT-AGE: etre avant (devant) les autres, voila votre avantage.",
+     es:"AVANT-AGE suena a avant (adelante): estar delante de los demas es tu avantage."},
+ q:{en:"What avantage does learning a second language give you at work?",
+    fr:"Quel avantage l'apprentissage d'une deuxieme langue vous donne-t-il au travail?",
+    es:"Que avantage te da aprender un segundo idioma en el trabajo?"}},
+
+{w:"inconvenient",pos:"noun",exam:"delf",level:"b1",topic:"society",
+ def:{en:"A disadvantage or drawback that causes difficulty.",
+      fr:"Un desavantage ou un inconvenient qui cause une difficulte.",
+      es:"Una desventaja o inconveniente que causa dificultad."},
+ ex:{r:"Le principal inconvenient de vivre en centre-ville est le bruit constant.",
+     l:"Il y a un inconvenient a travailler de chez soi: on se sent parfois isole."},
+ syn:"desavantage",
+ mn:{en:"IN-CONVEN-IENT sounds like inconvenient in English - something so IN-convenient it becomes an inconvenient.",
+     fr:"IN-CONVEN-IENT ressemble a pas convenable: quelque chose de genant, un inconvenient.",
+     es:"IN-CONVEN-IENT suena a inconveniente en espanol - algo molesto, un inconvenient."},
+ q:{en:"What is the biggest inconvenient of living far from your workplace?",
+    fr:"Quel est le plus grand inconvenient de vivre loin de son lieu de travail?",
+    es:"Cual es el mayor inconvenient de vivir lejos del trabajo?"}},
+
+{w:"developpement",pos:"noun",exam:"delf",level:"b1",topic:"economy",
+ def:{en:"The process of growing, improving, or becoming more advanced.",
+      fr:"Le processus de croissance, d'amelioration ou de progression.",
+      es:"El proceso de crecimiento, mejora o avance."},
+ ex:{r:"Le developpement durable est devenu une priorite pour de nombreux gouvernements.",
+     l:"Le developpement de cette ville a ete impressionnant ces dix dernieres annees."},
+ syn:"croissance",
+ mn:{en:"DEVELOP-MENT: think develop a photo that reveals a country's growth, its developpement.",
+     fr:"DEVELOP-PEMENT: pensez a developper une photo qui revele la croissance d'un pays, son developpement.",
+     es:"DEVELOP-PEMENT suena a desarrollo - revelar una foto que muestra el crecimiento de un pais."},
+ q:{en:"What kind of developpement does your city need most?",
+    fr:"Quel type de developpement votre ville a-t-elle le plus besoin?",
+    es:"Que tipo de developpement necesita mas tu ciudad?"}},
+
+{w:"solution",pos:"noun",exam:"delf",level:"b1",topic:"science",
+ def:{en:"A means of solving a problem or dealing with a difficult situation.",
+      fr:"Un moyen de resoudre un probleme ou de faire face a une situation difficile.",
+      es:"Un medio para resolver un problema o enfrentar una situacion dificil."},
+ ex:{r:"Les chercheurs proposent une solution innovante pour reduire les dechets plastiques.",
+     l:"As-tu trouve une solution pour arriver au travail plus vite?"},
+ syn:"reponse",
+ mn:{en:"SOLU-TION sounds like solution in English directly - a dissolved answer to a problem.",
+     fr:"SOLU-TION ressemble directement a solution en francais.",
+     es:"SOLUCION suena directo al espanol - una respuesta a un problema."},
+ q:{en:"What solution would you propose to reduce traffic in big cities?",
+    fr:"Quelle solution proposeriez-vous pour reduire la circulation dans les grandes villes?",
+    es:"Que solution propondrias para reducir el trafico en las grandes ciudades?"}},
+
+{w:"probleme",pos:"noun",exam:"delf",level:"b1",topic:"society",
+ def:{en:"A matter or situation regarded as harmful and needing to be addressed.",
+      fr:"Une question ou situation consideree comme nuisible et necessitant d'etre traitee.",
+      es:"Un asunto o situacion considerada perjudicial que necesita ser resuelta."},
+ ex:{r:"Le probleme du chomage touche particulierement les jeunes diplomes.",
+     l:"On a un petit probleme avec la reservation, tu peux verifier?"},
+ syn:"souci",
+ mn:{en:"PRO-BLEME sounds like problem - a professional headache you must fix, a probleme.",
+     fr:"PRO-BLEME ressemble directement a probleme en francais.",
+     es:"PROBLEMA suena directo al espanol - un asunto que hay que resolver."},
+ q:{en:"What probleme worries you most about the future of your country?",
+    fr:"Quel probleme vous inquiete le plus concernant l'avenir de votre pays?",
+    es:"Que probleme te preocupa mas sobre el futuro de tu pais?"}},
+
+{w:"important",pos:"adjective",exam:"delf",level:"b1",topic:"education",
+ def:{en:"Of great significance or value; deserving serious attention.",
+      fr:"D'une grande importance ou valeur; meritant une attention serieuse.",
+      es:"De gran importancia o valor; que merece atencion seria."},
+ ex:{r:"Il est important de verifier ses sources avant de publier un article.",
+     l:"C'est vraiment important pour moi que tu viennes a mon anniversaire."},
+ syn:"essentiel",
+ mn:{en:"IM-PORT-ANT sounds like import a huge ant - something so important you must import it.",
+     fr:"IM-PORT-ANT ressemble directement a important en francais.",
+     es:"IMPORTANTE suena directo al espanol."},
+ q:{en:"What is the most important quality a good friend should have?",
+    fr:"Quelle est la qualite la plus importante que doit avoir un bon ami?",
+    es:"Cual es la cualidad mas important que debe tener un buen amigo?"}},
+
+{w:"necessaire",pos:"adjective",exam:"delf",level:"b1",topic:"education",
+ def:{en:"Required in order to achieve a particular result; essential.",
+      fr:"Requis pour obtenir un resultat particulier; essentiel.",
+      es:"Requerido para lograr un resultado particular; esencial."},
+ ex:{r:"Il est necessaire de reserver une place a l'avance pour ce concert.",
+     l:"Tu penses que c'est necessaire d'apporter un cadeau a la fete?"},
+ syn:"indispensable",
+ mn:{en:"NE-CESS-AIRE sounds like necessary - imagine needing air so badly it's absolutely necessaire.",
+     fr:"NE-CESS-AIRE ressemble directement a necessaire en francais.",
+     es:"NECESARIO suena directo al espanol - algo indispensable."},
+ q:{en:"What is necessaire to succeed in learning a new language?",
+    fr:"Qu'est-ce qui est necessaire pour reussir a apprendre une nouvelle langue?",
+    es:"Que es necessaire para tener exito al aprender un nuevo idioma?"}},
+
+{w:"difficile",pos:"adjective",exam:"delf",level:"b1",topic:"education",
+ def:{en:"Hard to do, understand, or deal with.",
+      fr:"Difficile a faire, comprendre ou gerer.",
+      es:"Dificil de hacer, entender o manejar."},
+ ex:{r:"Trouver un emploi stable reste difficile pour de nombreux jeunes diplomes.",
+     l:"C'etait vraiment difficile de comprendre l'accent du guide pendant la visite."},
+ syn:"complique",
+ mn:{en:"DIF-FI-CILE sounds like difficult - imagine a difficult puzzle piece that just won't fit, so difficile.",
+     fr:"DIF-FI-CILE ressemble directement a difficile en francais.",
+     es:"DIFICIL suena directo al espanol."},
+ q:{en:"What was the most difficile challenge you faced this year?",
+    fr:"Quel a ete le defi le plus difficile que vous avez affronte cette annee?",
+    es:"Cual fue el reto mas difficile que enfrentaste este ano?"}},
+
+{w:"avenir",pos:"noun",exam:"delf",level:"b1",topic:"society",
+ def:{en:"The time that is to come; the future.",
+      fr:"Le temps a venir; le futur.",
+      es:"El tiempo que esta por venir; el futuro."},
+ ex:{r:"De nombreux experts s'interrogent sur l'avenir du travail face a l'intelligence artificielle.",
+     l:"Comment tu imagines ton avenir dans dix ans?"},
+ syn:"futur",
+ mn:{en:"AVE-NIR sounds like have a near future - the near future that will soon arrive, your avenir.",
+     fr:"AVE-NIR: pensez a ce qui va venir bientot - votre avenir.",
+     es:"AVENIR suena a venir: lo que esta por venir pronto, tu avenir (futuro)."},
+ q:{en:"How do you imagine your avenir in ten years?",
+    fr:"Comment imaginez-vous votre avenir dans dix ans?",
+    es:"Como imaginas tu avenir en diez anos?"}},
+
+{w:"technologie",pos:"noun",exam:"delf",level:"b1",topic:"technology",
+ def:{en:"The application of scientific knowledge for practical purposes, especially in industry.",
+      fr:"L'application des connaissances scientifiques a des fins pratiques, notamment dans l'industrie.",
+      es:"La aplicacion del conocimiento cientifico con fines practicos, especialmente en la industria."},
+ ex:{r:"La technologie a radicalement transforme la maniere dont nous communiquons entre nous.",
+     l:"Cette nouvelle technologie va vraiment nous faciliter la vie au bureau!"},
+ syn:"innovation",
+ mn:{en:"TECHNO-LOGIE sounds like techno logic - the logical, techy science behind machines, technologie.",
+     fr:"TECHNO-LOGIE ressemble directement a technologie en francais.",
+     es:"TECNOLOGIA suena directo al espanol."},
+ q:{en:"What technologie has changed your daily life the most?",
+    fr:"Quelle technologie a le plus change votre vie quotidienne?",
+    es:"Que technologie ha cambiado mas tu vida diaria?"}},
+
+{w:"sante",pos:"noun",exam:"delf",level:"b1",topic:"health",
+ def:{en:"The state of being physically and mentally well.",
+      fr:"L'etat de bien-etre physique et mental.",
+      es:"El estado de bienestar fisico y mental."},
+ ex:{r:"Une bonne alimentation est essentielle pour preserver sa sante sur le long terme.",
+     l:"Tu devrais faire attention a ta sante, tu travailles trop en ce moment."},
+ syn:"bien-etre",
+ mn:{en:"SAN-TE sounds like saint tea - drinking a saintly tea to protect your health, your sante.",
+     fr:"SAN-TE ressemble a sain plus the: boire un the sain pour proteger sa sante.",
+     es:"SANTE suena a sano mas te: tomar un te sano para proteger tu sante (salud)."},
+ q:{en:"What do you do to take care of your sante?",
+    fr:"Que faites-vous pour prendre soin de votre sante?",
+    es:"Que haces para cuidar tu sante?"}},
+
+{w:"education",pos:"noun",exam:"delf",level:"b1",topic:"education",
+ def:{en:"The process of teaching and learning, especially in schools.",
+      fr:"Le processus d'enseignement et d'apprentissage, notamment a l'ecole.",
+      es:"El proceso de ensenanza y aprendizaje, especialmente en la escuela."},
+ ex:{r:"L'education joue un role fondamental dans la reduction des inegalites sociales.",
+     l:"Je trouve que l'education qu'on recoit a la maison est aussi importante que celle de l'ecole."},
+ syn:"instruction",
+ mn:{en:"EDU-CATION sounds like education directly - a nation's future built through education.",
+     fr:"EDU-CATION ressemble directement a education en francais.",
+     es:"EDUCACION suena directo al espanol."},
+ q:{en:"What role should education play in reducing social inequality?",
+    fr:"Quel role l'education doit-elle jouer dans la reduction des inegalites sociales?",
+    es:"Que papel deberia jugar la education en reducir la desigualdad social?"}},
+
+{w:"transport",pos:"noun",exam:"delf",level:"b1",topic:"environment",
+ def:{en:"The action of moving people or goods from one place to another.",
+      fr:"L'action de deplacer des personnes ou des biens d'un lieu a un autre.",
+      es:"La accion de trasladar personas o bienes de un lugar a otro."},
+ ex:{r:"Les transports en commun permettent de reduire considerablement la pollution en ville.",
+     l:"Quel moyen de transport tu preferes pour aller au travail?"},
+ syn:"deplacement",
+ mn:{en:"TRANS-PORT sounds like trans-port - moving across to a new port, your transport.",
+     fr:"TRANS-PORT ressemble directement a transport en francais.",
+     es:"TRANSPORTE suena directo al espanol."},
+ q:{en:"What form of transport do you think is best for reducing pollution?",
+    fr:"Quel moyen de transport pensez-vous etre le meilleur pour reduire la pollution?",
+    es:"Que medio de transport crees que es mejor para reducir la contaminacion?"}},
+
+{w:"consommation",pos:"noun",exam:"delf",level:"b2",topic:"economy",
+ def:{en:"The action of using up a resource or buying goods and services.",
+      fr:"L'action d'utiliser une ressource ou d'acheter des biens et services.",
+      es:"La accion de usar un recurso o comprar bienes y servicios."},
+ ex:{r:"La consommation excessive de ressources naturelles menace l'equilibre ecologique de la planete.",
+     l:"J'essaie de reduire ma consommation de viande pour des raisons ecologiques."},
+ syn:"usage",
+ mn:{en:"CON-SOM-MATION sounds like consumption - imagine consuming everything together, your consommation.",
+     fr:"CON-SOM-MATION ressemble directement a consommation en francais.",
+     es:"CONSUMO (parecido): imagina consumir todo junto, tu consommation."},
+ q:{en:"What changes could reduce excessive consommation in modern society?",
+    fr:"Quels changements pourraient reduire la consommation excessive dans la societe moderne?",
+    es:"Que cambios podrian reducir el consommation excesivo en la sociedad moderna?"}},
+
+{w:"pollution",pos:"noun",exam:"delf",level:"b2",topic:"environment",
+ def:{en:"The presence of harmful substances contaminating the environment.",
+      fr:"La presence de substances nocives contaminant l'environnement.",
+      es:"La presencia de sustancias daninas que contaminan el medio ambiente."},
+ ex:{r:"La pollution de l'air est responsable de milliers de deces prematures chaque annee.",
+     l:"La pollution dans cette ville est vraiment inquietante ces derniers temps."},
+ syn:"contamination",
+ mn:{en:"POL-LU-TION sounds like pollution directly - dirty smoke filling the sky, la pollution.",
+     fr:"POL-LU-TION ressemble directement a pollution en francais.",
+     es:"POLUCION suena directo al espanol - contaminacion."},
+ q:{en:"What is the main cause of pollution in large cities?",
+    fr:"Quelle est la principale cause de la pollution dans les grandes villes?",
+    es:"Cual es la causa principal de la pollution en las grandes ciudades?"}},
+
+{w:"mondialisation",pos:"noun",exam:"delf",level:"b2",topic:"economy",
+ def:{en:"The process by which businesses and cultures become interconnected globally.",
+      fr:"Le processus par lequel les entreprises et les cultures deviennent interconnectees a l'echelle mondiale.",
+      es:"El proceso por el cual las empresas y culturas se interconectan a nivel global."},
+ ex:{r:"La mondialisation a favorise les echanges commerciaux mais aussi certaines inegalites economiques.",
+     l:"Tu crois que la mondialisation a plus d'avantages que d'inconvenients?"},
+ syn:"globalisation",
+ mn:{en:"MONDIA-LISATION sounds like monde (world) uniting into one - the world becoming one, mondialisation.",
+     fr:"MONDIA-LISATION vient de monde: le monde entier qui s'unit, la mondialisation.",
+     es:"MONDIA-LISATION viene de monde (mundo): el mundo entero uniendose, la mondialisation."},
+ q:{en:"What is the biggest advantage of mondialisation for developing countries?",
+    fr:"Quel est le plus grand avantage de la mondialisation pour les pays en developpement?",
+    es:"Cual es la mayor ventaja de la mondialisation para los paises en desarrollo?"}},
+
+{w:"inegalite",pos:"noun",exam:"delf",level:"b2",topic:"society",
+ def:{en:"An unfair difference between people in status, rights, or opportunities.",
+      fr:"Une difference injuste entre les personnes en matiere de statut, de droits ou d'opportunites.",
+      es:"Una diferencia injusta entre personas en cuanto a estatus, derechos u oportunidades."},
+ ex:{r:"Les inegalites sociales se sont accentuees depuis la derniere crise economique.",
+     l:"On voit vraiment beaucoup d'inegalite entre les quartiers riches et pauvres de cette ville."},
+ syn:"disparite",
+ mn:{en:"IN-EGAL-ITE sounds like not equal - the opposite of equality, inegalite.",
+     fr:"IN-EGAL-ITE vient de egal (equal) avec le prefixe in (non): le contraire de l'egalite.",
+     es:"IN-EGAL-ITE viene de igual con el prefijo in: lo contrario de la igualdad."},
+ q:{en:"What causes the greatest inegalite in access to education today?",
+    fr:"Qu'est-ce qui cause la plus grande inegalite dans l'acces a l'education aujourd'hui?",
+    es:"Que causa la mayor inegalite en el acceso a la educacion hoy?"}},
+
+{w:"ressource",pos:"noun",exam:"delf",level:"b2",topic:"environment",
+ def:{en:"A stock or supply of materials, money, or assets that can be used.",
+      fr:"Une reserve de materiaux, d'argent ou de biens pouvant etre utilises.",
+      es:"Una reserva de materiales, dinero o bienes que se pueden utilizar."},
+ ex:{r:"La gestion durable des ressources naturelles est un enjeu majeur du siecle.",
+     l:"Cette bibliotheque est une vraie ressource pour preparer mes examens."},
+ syn:"reserve",
+ mn:{en:"RE-SOURCE sounds like going back to the SOURCE of a river to find useful supplies, la ressource.",
+     fr:"RE-SOURCE: retourner a la source d'une riviere pour trouver des reserves utiles.",
+     es:"RE-SOURCE suena a volver a la fuente de un rio para encontrar suministros utiles."},
+ q:{en:"What natural ressource is most at risk in your country?",
+    fr:"Quelle ressource naturelle est la plus menacee dans votre pays?",
+    es:"Que ressource natural esta mas en riesgo en tu pais?"}},
+
+{w:"evolution",pos:"noun",exam:"delf",level:"b2",topic:"science",
+ def:{en:"The gradual process of change and development over time.",
+      fr:"Le processus graduel de changement et de developpement au fil du temps.",
+      es:"El proceso gradual de cambio y desarrollo a lo largo del tiempo."},
+ ex:{r:"L'evolution rapide des technologies numeriques transforme le marche du travail.",
+     l:"On a remarque une belle evolution dans son niveau de francais cette annee."},
+ syn:"changement",
+ mn:{en:"E-VOLU-TION sounds like evolution directly - species slowly changing, evolution.",
+     fr:"E-VOLU-TION ressemble directement a evolution en francais.",
+     es:"EVOLUCION suena directo al espanol."},
+ q:{en:"What evolution do you expect to see in your field of work?",
+    fr:"Quelle evolution attendez-vous de voir dans votre domaine de travail?",
+    es:"Que evolution esperas ver en tu campo de trabajo?"}},
+
+{w:"consequence",pos:"noun",exam:"delf",level:"b2",topic:"environment",
+ def:{en:"A result or effect of a particular action or condition.",
+      fr:"Un resultat ou effet d'une action ou d'une condition particuliere.",
+      es:"Un resultado o efecto de una accion o condicion particular."},
+ ex:{r:"La deforestation a de lourdes consequences sur la biodiversite mondiale.",
+     l:"Si tu ne revises pas, il y aura des consequences sur ton examen."},
+ syn:"resultat",
+ mn:{en:"CON-SE-QUENCE sounds like a QUEEN acting with authority - every decision has a consequence.",
+     fr:"CONSEQUENCE ressemble directement a consequence en francais.",
+     es:"CONSECUENCIA suena directo al espanol."},
+ q:{en:"What consequence would result from ignoring climate warnings?",
+    fr:"Quelle consequence resulterait du fait d'ignorer les avertissements climatiques?",
+    es:"Que consequence resultaria de ignorar las advertencias climaticas?"}},
+
+{w:"comportement",pos:"noun",exam:"delf",level:"b2",topic:"society",
+ def:{en:"The way in which a person or animal acts or behaves.",
+      fr:"La maniere dont une personne ou un animal agit ou se comporte.",
+      es:"La manera en que una persona o animal actua o se comporta."},
+ ex:{r:"Le comportement des consommateurs a beaucoup change depuis l'essor du commerce en ligne.",
+     l:"Son comportement pendant la reunion m'a vraiment surpris."},
+ syn:"attitude",
+ mn:{en:"COM-PORTE-MENT sounds like comport oneself - how you carry yourself, your comportement.",
+     fr:"COM-PORTE-MENT vient de se comporter: comment on se porte face aux autres.",
+     es:"COM-PORTE-MENT viene de comportarse: como uno se porta frente a los demas."},
+ q:{en:"What comportement do you expect from a good leader?",
+    fr:"Quel comportement attendez-vous d'un bon leader?",
+    es:"Que comportement esperas de un buen lider?"}},
+
+{w:"reduire",pos:"verb",exam:"delf",level:"b2",topic:"environment",
+ def:{en:"To make something smaller or less in amount, size, or degree.",
+      fr:"Rendre quelque chose plus petit ou moins important en quantite, taille ou degre.",
+      es:"Hacer que algo sea mas pequeno o menor en cantidad, tamano o grado."},
+ ex:{r:"Il est urgent de reduire les emissions de gaz a effet de serre.",
+     l:"On devrait reduire le temps qu'on passe devant les ecrans le soir."},
+ syn:"diminuer",
+ mn:{en:"RE-DUIRE sounds like reduce directly - shrinking something down, to reduire.",
+     fr:"RE-DUIRE ressemble a conduire en plus petit: faire diminuer quelque chose.",
+     es:"REDUIRE suena a reducir en espanol - hacer mas pequeno algo."},
+ q:{en:"What can governments do to reduire plastic waste?",
+    fr:"Que peuvent faire les gouvernements pour reduire les dechets plastiques?",
+    es:"Que pueden hacer los gobiernos para reduire los residuos plasticos?"}},
+
+{w:"favoriser",pos:"verb",exam:"delf",level:"b2",topic:"society",
+ def:{en:"To support or encourage something over other options; to promote.",
+      fr:"Soutenir ou encourager quelque chose plutot que d'autres options; promouvoir.",
+      es:"Apoyar o fomentar algo sobre otras opciones; promover."},
+ ex:{r:"Les nouvelles politiques visent a favoriser l'egalite des chances a l'ecole.",
+     l:"Ce genre d'activite favorise vraiment le travail d'equipe entre collegues."},
+ syn:"encourager",
+ mn:{en:"FAVOR-ISER sounds like doing someone a FAVOR - helping them along, to favoriser.",
+     fr:"FAVOR-ISER vient de faveur: accorder une faveur, favoriser quelque chose.",
+     es:"FAVOR-ISER viene de favor: conceder un favor, favoriser algo."},
+ q:{en:"What policies would favoriser equal opportunities in education?",
+    fr:"Quelles politiques permettraient de favoriser l'egalite des chances dans l'education?",
+    es:"Que politicas ayudarian a favoriser la igualdad de oportunidades en la educacion?"}},
+
+{w:"envisager",pos:"verb",exam:"delf",level:"b2",topic:"education",
+ def:{en:"To contemplate a possible future action or event; to consider.",
+      fr:"Considerer une action ou un evenement futur possible; prendre en compte.",
+      es:"Contemplar una posible accion o evento futuro; considerar."},
+ ex:{r:"De plus en plus d'etudiants envisagent de poursuivre leurs etudes a l'etranger.",
+     l:"Tu envisages de changer de metier un jour?"},
+ syn:"considerer",
+ mn:{en:"EN-VISAGE-R sounds like putting a VISAGE (face) on the future - picturing it, to envisager.",
+     fr:"EN-VISAGE-R vient de visage: se representer un futur, l'envisager.",
+     es:"EN-VISAGE-R viene de visage (rostro): imaginar un futuro posible, envisager."},
+ q:{en:"Do you envisager studying abroad one day? Why or why not?",
+    fr:"Envisagez-vous d'etudier a l'etranger un jour? Pourquoi ou pourquoi pas?",
+    es:"Envisages estudiar en el extranjero algun dia? Por que si o no?"}},
+
+{w:"accroitre",pos:"verb",exam:"delf",level:"b2",topic:"economy",
+ def:{en:"To increase or make something grow in size, number, or intensity.",
+      fr:"Augmenter ou faire croitre quelque chose en taille, en nombre ou en intensite.",
+      es:"Aumentar o hacer crecer algo en tamano, numero o intensidad."},
+ ex:{r:"Cette reforme vise a accroitre la competitivite des petites entreprises.",
+     l:"Ce nouveau programme va accroitre nos chances de trouver un emploi rapidement."},
+ syn:"augmenter",
+ mn:{en:"AC-CROI-TRE sounds like accrue and croissant growing bigger - to accroitre, to increase.",
+     fr:"AC-CROI-TRE vient de croitre (grandir): faire grandir quelque chose.",
+     es:"AC-CROI-TRE viene de crecer: hacer crecer algo, aumentar."},
+ q:{en:"What strategy could accroitre small business revenue?",
+    fr:"Quelle strategie pourrait accroitre les revenus des petites entreprises?",
+    es:"Que estrategia podria accroitre los ingresos de las pequenas empresas?"}},
+
+{w:"souligner",pos:"verb",exam:"delf",level:"b2",topic:"education",
+ def:{en:"To emphasize or draw attention to something important.",
+      fr:"Mettre en evidence ou attirer l'attention sur quelque chose d'important.",
+      es:"Enfatizar o llamar la atencion sobre algo importante."},
+ ex:{r:"Le rapport souligne l'importance d'investir davantage dans la recherche scientifique.",
+     l:"Je veux juste souligner a quel point ton aide m'a ete precieuse."},
+ syn:"insister sur",
+ mn:{en:"SOU-LIGNE-R sounds like drawing a LINE under a word - to underline it, souligner.",
+     fr:"SOU-LIGNE-R vient de ligne: tracer une ligne sous un mot pour souligner son importance.",
+     es:"SOU-LIGNE-R viene de linea: trazar una linea bajo una palabra para resaltarla."},
+ q:{en:"What point would you souligner when arguing for more funding in schools?",
+    fr:"Quel point souligneriez-vous pour plaider en faveur de plus de financement dans les ecoles?",
+    es:"Que punto quisieras souligner al argumentar por mas financiamiento en las escuelas?"}},
+
+{w:"constater",pos:"verb",exam:"delf",level:"b2",topic:"science",
+ def:{en:"To notice or observe a fact; to establish something as true.",
+      fr:"Remarquer ou observer un fait; etablir quelque chose comme vrai.",
+      es:"Notar u observar un hecho; establecer algo como verdadero."},
+ ex:{r:"Les chercheurs ont constate une baisse significative de la biodiversite marine.",
+     l:"J'ai constate que tu arrives toujours en retard le lundi."},
+ syn:"observer",
+ mn:{en:"CON-STATE-R sounds like confirming a STATE of facts together - to constater, to notice officially.",
+     fr:"CON-STATE-R vient de etat (state): confirmer un etat de fait, le constater.",
+     es:"CON-STATE-R viene de estado (state): confirmar un estado de hecho, constatarlo."},
+ q:{en:"What change have you constater in your habits this year?",
+    fr:"Quel changement avez-vous constate dans vos habitudes cette annee?",
+    es:"Que cambio has constater en tus habitos este ano?"}},
+
+{w:"autrui",pos:"noun",exam:"delf",level:"b2",topic:"society",
+ def:{en:"Other people; those other than oneself.",
+      fr:"Les autres personnes; ceux qui ne sont pas soi-meme.",
+      es:"Otras personas; aquellos que no son uno mismo."},
+ ex:{r:"Respecter autrui est une valeur fondamentale enseignee des le plus jeune age.",
+     l:"Il faut toujours penser a autrui avant d'agir de facon egoiste."},
+ syn:"les autres",
+ mn:{en:"AU-TRUI sounds like other, true - always think of the other, true people around you, autrui.",
+     fr:"AU-TRUI ressemble a les autres: penser toujours a autrui, aux autres.",
+     es:"AU-TRUI suena a los otros: pensar siempre en autrui, en los demas."},
+ q:{en:"Why is it important to respect autrui in a diverse society?",
+    fr:"Pourquoi est-il important de respecter autrui dans une societe diverse?",
+    es:"Por que es importante respetar a autrui en una sociedad diversa?"}},
+
+{w:"paradoxe",pos:"noun",exam:"delf",level:"c1",topic:"society",
+ def:{en:"A statement or situation that seems contradictory but may contain a truth.",
+      fr:"Une affirmation ou situation qui semble contradictoire mais qui peut contenir une verite.",
+      es:"Una afirmacion o situacion que parece contradictoria pero puede contener una verdad."},
+ ex:{r:"Le paradoxe de l'abondance illustre comment la surproduction peut coexister avec la pauvrete.",
+     l:"C'est un vrai paradoxe: plus on a de moyens de communication, moins on se parle."},
+ syn:"contradiction",
+ mn:{en:"PARA-DOXE sounds like para-doctor giving two contradictory diagnoses - a paradoxe.",
+     fr:"PARA-DOXE ressemble directement a paradoxe en francais.",
+     es:"PARADOJA suena directo al espanol."},
+ q:{en:"Describe a paradoxe you have noticed in modern society.",
+    fr:"Decrivez un paradoxe que vous avez remarque dans la societe moderne.",
+    es:"Describe un paradoxe que hayas notado en la sociedad moderna."}},
+
+{w:"controverse",pos:"noun",exam:"delf",level:"c1",topic:"society",
+ def:{en:"A prolonged public disagreement or debate about a topic.",
+      fr:"Un desaccord public prolonge ou un debat sur un sujet.",
+      es:"Un desacuerdo publico prolongado o debate sobre un tema."},
+ ex:{r:"La controverse autour de cette loi a divise l'opinion publique pendant des mois.",
+     l:"Cette decision a cree une vraie controverse parmi les habitants du quartier."},
+ syn:"polemique",
+ mn:{en:"CONTRO-VERSE sounds like a poem verse so provocative it starts a controverse.",
+     fr:"CONTRO-VERSE ressemble directement a controverse en francais.",
+     es:"CONTROVERSIA suena directo al espanol."},
+ q:{en:"Choose a controverse and explain both sides briefly.",
+    fr:"Choisissez une controverse et expliquez brievement les deux points de vue.",
+    es:"Elige una controverse y explica brevemente ambos puntos de vista."}},
+
+{w:"dispositif",pos:"noun",exam:"delf",level:"c1",topic:"technology",
+ def:{en:"A system, mechanism, or set of measures put in place for a purpose.",
+      fr:"Un systeme, mecanisme ou ensemble de mesures mis en place pour un objectif.",
+      es:"Un sistema, mecanismo o conjunto de medidas puesto en marcha para un fin."},
+ ex:{r:"Le gouvernement a mis en place un nouveau dispositif d'aide pour les petites entreprises.",
+     l:"Ce dispositif de securite a ete installe recemment dans le batiment."},
+ syn:"mecanisme",
+ mn:{en:"DISPOSI-TIF sounds like dispose of a problem with a special tool - the dispositif, the mechanism.",
+     fr:"DISPOSI-TIF vient de disposer: un ensemble de moyens disposes pour agir.",
+     es:"DISPOSITIF suena a dispositivo - un mecanismo puesto en marcha para actuar."},
+ q:{en:"What dispositif would you create to help students with mental health issues?",
+    fr:"Quel dispositif creeriez-vous pour aider les etudiants souffrant de problemes de sante mentale?",
+    es:"Que dispositif crearias para ayudar a estudiantes con problemas de salud mental?"}},
+
+{w:"approche",pos:"noun",exam:"delf",level:"c1",topic:"education",
+ def:{en:"A particular way of dealing with or thinking about something.",
+      fr:"Une maniere particuliere de traiter ou de penser a quelque chose.",
+      es:"Una forma particular de abordar o pensar en algo."},
+ ex:{r:"Cette approche pedagogique met l'accent sur l'apprentissage par le jeu.",
+     l:"J'aime bien ton approche pour resoudre ce genre de conflit."},
+ syn:"methode",
+ mn:{en:"AP-PROCHE sounds like approach directly - walking up to a problem with a plan, une approche.",
+     fr:"AP-PROCHE ressemble directement a approche en francais.",
+     es:"ENFOQUE (parecido en significado): una forma particular de abordar algo, une approche."},
+ q:{en:"What approche would you use to teach a difficult concept?",
+    fr:"Quelle approche utiliseriez-vous pour enseigner un concept difficile?",
+    es:"Que approche usarias para ensenar un concepto dificil?"}},
+
+{w:"enjeu",pos:"noun",exam:"delf",level:"c1",topic:"economy",
+ def:{en:"A stake or important issue at risk in a situation.",
+      fr:"Un element important en jeu ou en risque dans une situation.",
+      es:"Un factor importante en juego o en riesgo en una situacion."},
+ ex:{r:"La transition energetique represente l'un des principaux enjeux du XXIe siecle.",
+     l:"L'enjeu de cette reunion, c'est vraiment de trouver un accord avant vendredi."},
+ syn:"defi",
+ mn:{en:"EN-JEU sounds like en jeu (in play/at stake) - what's really at stake, l'enjeu.",
+     fr:"EN-JEU vient litteralement de en jeu: ce qui est en jeu dans une situation.",
+     es:"EN-JEU suena a en juego: lo que esta en juego en una situacion, l'enjeu."},
+ q:{en:"What is the biggest enjeu facing your generation?",
+    fr:"Quel est le plus grand enjeu auquel votre generation est confrontee?",
+    es:"Cual es el mayor enjeu que enfrenta tu generacion?"}},
+
+{w:"impact",pos:"noun",exam:"delf",level:"c1",topic:"environment",
+ def:{en:"A powerful effect that something has on someone or something else.",
+      fr:"Un effet puissant que quelque chose a sur quelqu'un ou autre chose.",
+      es:"Un efecto poderoso que algo tiene sobre alguien o algo mas."},
+ ex:{r:"L'impact du changement climatique sur l'agriculture est deja visible dans plusieurs regions.",
+     l:"Ce voyage a eu un impact enorme sur ma facon de voir le monde."},
+ syn:"effet",
+ mn:{en:"IM-PACT sounds like two cars in an impact collision - a strong effect, l'impact.",
+     fr:"IM-PACT ressemble directement a impact en francais.",
+     es:"IMPACTO suena directo al espanol."},
+ q:{en:"What impact does climate change have on agriculture?",
+    fr:"Quel impact le changement climatique a-t-il sur l'agriculture?",
+    es:"Que impact tiene el cambio climatico en la agricultura?"}},
+
+{w:"demarche",pos:"noun",exam:"delf",level:"c1",topic:"education",
+ def:{en:"A step, procedure, or course of action taken to achieve something.",
+      fr:"Une etape, procedure ou action entreprise pour atteindre un objectif.",
+      es:"Un paso, procedimiento o accion emprendida para lograr algo."},
+ ex:{r:"Cette demarche administrative peut prendre plusieurs semaines avant d'aboutir.",
+     l:"Quelle demarche as-tu suivie pour obtenir ton visa etudiant?"},
+ syn:"procedure",
+ mn:{en:"DE-MARCHE sounds like de march - marching step by step through a process, la demarche.",
+     fr:"DE-MARCHE vient de marcher: avancer pas a pas dans une procedure.",
+     es:"DE-MARCHE viene de marchar: avanzar paso a paso en un procedimiento."},
+ q:{en:"What demarche did you follow to apply to university?",
+    fr:"Quelle demarche avez-vous suivie pour vous inscrire a l'universite?",
+    es:"Que demarche seguiste para inscribirte en la universidad?"}},
+
+{w:"refuter",pos:"verb",exam:"delf",level:"c1",topic:"education",
+ def:{en:"To prove a statement or theory to be wrong.",
+      fr:"Prouver qu'une affirmation ou theorie est fausse.",
+      es:"Demostrar que una afirmacion o teoria es falsa."},
+ ex:{r:"Le chercheur a reussi a refuter l'hypothese initiale grace a de nouvelles donnees.",
+     l:"Je pense pouvoir refuter cet argument facilement, laisse-moi t'expliquer pourquoi."},
+ syn:"contredire",
+ mn:{en:"RE-FUTE-R sounds like refute directly - shutting down a false idea for good, refuter.",
+     fr:"RE-FUTE-R ressemble directement a refuter en francais.",
+     es:"REFUTAR suena directo al espanol."},
+ q:{en:"How would you refuter someone who claims social media has no downsides?",
+    fr:"Comment refuteriez-vous quelqu'un qui affirme que les reseaux sociaux n'ont aucun inconvenient?",
+    es:"Como refutarias a alguien que afirma que las redes sociales no tienen desventajas?"}},
+
+{w:"engendrer",pos:"verb",exam:"delf",level:"c1",topic:"environment",
+ def:{en:"To cause or bring about a situation or consequence.",
+      fr:"Causer ou provoquer une situation ou une consequence.",
+      es:"Causar u ocasionar una situacion o consecuencia."},
+ ex:{r:"La deforestation massive engendre une perte irreversible de biodiversite.",
+     l:"Ce genre de decision peut engendrer beaucoup de tensions dans une famille."},
+ syn:"provoquer",
+ mn:{en:"EN-GENDRE-R sounds like engender directly - to give birth to a consequence, engendrer.",
+     fr:"EN-GENDRE-R ressemble directement a engendrer en francais.",
+     es:"ENGENDRAR suena directo al espanol - provocar algo."},
+ q:{en:"What problems can excessive screen time engendrer in children?",
+    fr:"Quels problemes un temps d'ecran excessif peut-il engendrer chez les enfants?",
+    es:"Que problemas puede engendrer el exceso de pantallas en los ninos?"}},
+
+{w:"nuancer",pos:"verb",exam:"delf",level:"c1",topic:"education",
+ def:{en:"To add subtlety or shades of meaning to a statement or opinion.",
+      fr:"Apporter de la subtilite ou des nuances a une affirmation ou opinion.",
+      es:"Anadir sutileza o matices a una afirmacion u opinion."},
+ ex:{r:"Il convient de nuancer cette conclusion, car les donnees varient selon les regions.",
+     l:"Je voudrais nuancer un peu ce que je viens de dire."},
+ syn:"relativiser",
+ mn:{en:"NU-ANCE-R sounds like adding NUANCE to your words - to nuancer, to soften with subtlety.",
+     fr:"NU-ANCE-R vient directement de nuance: ajouter des nuances a son propos.",
+     es:"NU-ANCE-R viene de nuance (matiz): anadir matices a lo que se dice."},
+ q:{en:"How would you nuancer the claim that technology only harms young people?",
+    fr:"Comment nuanceriez-vous l'affirmation selon laquelle la technologie ne fait que nuire aux jeunes?",
+    es:"Como nuancerias la afirmacion de que la tecnologia solo perjudica a los jovenes?"}},
+
+{w:"preconiser",pos:"verb",exam:"delf",level:"c1",topic:"science",
+ def:{en:"To recommend a particular course of action as being advisable.",
+      fr:"Recommander une action particuliere comme etant judicieuse.",
+      es:"Recomendar una accion particular como aconsejable."},
+ ex:{r:"Les experts preconisent une reduction immediate des emissions de carbone.",
+     l:"Le medecin preconise du repos et beaucoup d'eau pour cette grippe."},
+ syn:"recommander",
+ mn:{en:"PRE-CONI-SER sounds like a pre-council advising before it's too late - to preconiser, to recommend.",
+     fr:"PRE-CONI-SER vient de conseil: donner un conseil a l'avance, preconiser.",
+     es:"PRE-CONI-SER viene de consejo: dar un consejo con anticipacion, preconizar."},
+ q:{en:"What solution would you preconiser to reduce carbon emissions?",
+    fr:"Quelle solution preconiseriez-vous pour reduire les emissions de carbone?",
+    es:"Que solucion preconizarias para reducir las emisiones de carbono?"}},
+
+{w:"attenuer",pos:"verb",exam:"delf",level:"c1",topic:"environment",
+ def:{en:"To make something less severe or intense.",
+      fr:"Rendre quelque chose moins grave ou moins intense.",
+      es:"Hacer que algo sea menos grave o intenso."},
+ ex:{r:"Ces mesures visent a attenuer les effets du changement climatique sur les cotes.",
+     l:"Un peu de musique douce peut attenuer le stress avant un examen."},
+ syn:"reduire",
+ mn:{en:"AT-TENU-ER sounds like making something tenuous, thinner - to attenuer, to lessen.",
+     fr:"AT-TENU-ER vient de tenu (mince): rendre quelque chose plus tenu, l'attenuer.",
+     es:"AT-TENU-ER viene de tenue (delgado): hacer algo mas leve, atenuarlo."},
+ q:{en:"What steps can cities take to attenuer the effects of extreme heat?",
+    fr:"Quelles mesures les villes peuvent-elles prendre pour attenuer les effets des chaleurs extremes?",
+    es:"Que medidas pueden tomar las ciudades para attenuer los efectos del calor extremo?"}},
+
+{w:"optimiser",pos:"verb",exam:"delf",level:"c1",topic:"technology",
+ def:{en:"To make the best or most effective use of a resource or situation.",
+      fr:"Utiliser au mieux ou de la maniere la plus efficace une ressource ou une situation.",
+      es:"Usar de la mejor manera o mas eficaz un recurso o situacion."},
+ ex:{r:"Cette application permet d'optimiser la gestion du temps au travail.",
+     l:"On devrait optimiser notre trajet pour eviter les embouteillages."},
+ syn:"ameliorer",
+ mn:{en:"OPTI-MISE-R sounds like making something OPTIMAL - to optimiser, to make the best of it.",
+     fr:"OPTI-MISE-R vient de optimal: rendre quelque chose optimal, l'optimiser.",
+     es:"OPTIMIZAR suena directo al espanol."},
+ q:{en:"How could schools optimiser the way students learn online?",
+    fr:"Comment les ecoles pourraient-elles optimiser la maniere dont les eleves apprennent en ligne?",
+    es:"Como podrian las escuelas optimiser la forma en que los estudiantes aprenden en linea?"}},
+
+{w:"legitime",pos:"adjective",exam:"delf",level:"c1",topic:"society",
+ def:{en:"Conforming to the law or to rules; justified and reasonable.",
+      fr:"Conforme a la loi ou aux regles; justifie et raisonnable.",
+      es:"Conforme a la ley o a las reglas; justificado y razonable."},
+ ex:{r:"Les habitants ont exprime une inquietude legitime face a ce projet industriel.",
+     l:"Ta colere est tout a fait legitime apres ce qui s'est passe."},
+ syn:"justifie",
+ mn:{en:"LE-GI-TIME sounds like legit time - the right, legitimate moment to act, legitime.",
+     fr:"LE-GI-TIME ressemble directement a legitime en francais.",
+     es:"LEGITIMO suena directo al espanol."},
+ q:{en:"Do you think this concern is legitime? Why or why not?",
+    fr:"Pensez-vous que cette inquietude est legitime? Pourquoi ou pourquoi pas?",
+    es:"Crees que esta preocupacion es legitime? Por que si o no?"}},
+
+{w:"perenne",pos:"adjective",exam:"delf",level:"c1",topic:"economy",
+ def:{en:"Lasting or effective for a long time; durable and stable.",
+      fr:"Qui dure ou est efficace longtemps; durable et stable.",
+      es:"Que dura o es eficaz durante mucho tiempo; duradero y estable."},
+ ex:{r:"L'entreprise cherche un modele economique perenne face a la crise energetique.",
+     l:"On veut construire quelque chose de perenne, pas juste une solution temporaire."},
+ syn:"durable",
+ mn:{en:"PE-RENNE sounds like perennial flowers that bloom every year - lasting forever, perenne.",
+     fr:"PE-RENNE ressemble a perennial (perenne en anglais): qui dure dans le temps.",
+     es:"PERENNE suena parecido al espanol - algo que dura mucho tiempo."},
+ q:{en:"What would make a business model truly perenne?",
+    fr:"Qu'est-ce qui rendrait un modele economique vraiment perenne?",
+    es:"Que haria que un modelo de negocio fuera realmente perenne?"}},
+
+{w:"ubiquite",pos:"noun",exam:"delf",level:"c2",topic:"technology",
+ def:{en:"The fact of appearing everywhere or in several places at the same time.",
+      fr:"Le fait d'apparaitre partout ou en plusieurs endroits en meme temps.",
+      es:"El hecho de aparecer en todas partes o en varios lugares al mismo tiempo."},
+ ex:{r:"L'ubiquite des smartphones a profondement modifie nos interactions sociales quotidiennes.",
+     l:"L'ubiquite de ces publicites en ligne devient vraiment agacante."},
+ syn:"omnipresence",
+ mn:{en:"U-BIQUI-TE sounds like you be quitting everywhere at once - present everywhere, l'ubiquite.",
+     fr:"U-BIQUI-TE ressemble directement a ubiquite en francais.",
+     es:"UBICUIDAD suena directo al espanol - estar presente en todas partes."},
+ q:{en:"What technology shows the clearest ubiquite in your daily routine?",
+    fr:"Quelle technologie montre l'ubiquite la plus evidente dans votre routine quotidienne?",
+    es:"Que tecnologia muestra la ubiquite mas clara en tu rutina diaria?"}},
+
+{w:"dichotomie",pos:"noun",exam:"delf",level:"c2",topic:"society",
+ def:{en:"A division or contrast between two things that are entirely different.",
+      fr:"Une division ou un contraste entre deux choses entierement differentes.",
+      es:"Una division o contraste entre dos cosas completamente diferentes."},
+ ex:{r:"L'article explore la dichotomie entre croissance economique et protection de l'environnement.",
+     l:"Il y a une vraie dichotomie entre ce que les gens disent et ce qu'ils font reellement."},
+ syn:"opposition",
+ mn:{en:"DI-CHOT-OMIE sounds like die versus hot - two opposite extremes, une dichotomie.",
+     fr:"DI-CHOT-OMIE ressemble directement a dichotomie en francais.",
+     es:"DICOTOMIA suena directo al espanol."},
+ q:{en:"What dichotomie do you notice between online life and real life?",
+    fr:"Quelle dichotomie observez-vous entre la vie en ligne et la vraie vie?",
+    es:"Que dichotomie observas entre la vida en linea y la vida real?"}},
+
+{w:"corollaire",pos:"noun",exam:"delf",level:"c2",topic:"science",
+ def:{en:"A natural or logical consequence that follows from something already established.",
+      fr:"Une consequence naturelle ou logique qui decoule de quelque chose deja etabli.",
+      es:"Una consecuencia natural o logica que se deriva de algo ya establecido."},
+ ex:{r:"La hausse du chomage est souvent le corollaire d'une recession economique prolongee.",
+     l:"Cette fatigue est probablement le corollaire de tes nuits trop courtes."},
+ syn:"consequence",
+ mn:{en:"CORO-LLAIRE sounds like a chorale that naturally follows the main song - a corollaire, a natural consequence.",
+     fr:"CORO-LLAIRE ressemble directement a corollaire en francais.",
+     es:"COROLARIO suena parecido al espanol - una consecuencia logica."},
+ q:{en:"What is a corollaire of spending too much time on social media?",
+    fr:"Quel est un corollaire du fait de passer trop de temps sur les reseaux sociaux?",
+    es:"Cual es un corollaire de pasar demasiado tiempo en redes sociales?"}},
+
+{w:"exacerber",pos:"verb",exam:"delf",level:"c2",topic:"environment",
+ def:{en:"To make a problem, feeling, or situation worse.",
+      fr:"Rendre un probleme, un sentiment ou une situation plus grave.",
+      es:"Hacer que un problema, sentimiento o situacion empeore."},
+ ex:{r:"La secheresse prolongee a exacerbe les tensions autour de l'acces a l'eau.",
+     l:"Sauter le petit-dejeuner exacerbe souvent mes maux de tete plus tard dans la journee."},
+ syn:"aggraver",
+ mn:{en:"EX-ACER-BER sounds like an ACE player who baits his rival - exacerbating the rivalry, exacerber.",
+     fr:"EXACERBER ressemble directement a exacerber en francais.",
+     es:"EXACERBAR suena directo al espanol."},
+ q:{en:"What actions could exacerber the problem of urban air pollution?",
+    fr:"Quelles actions pourraient exacerber le probleme de la pollution atmospherique urbaine?",
+    es:"Que acciones podrian exacerber el problema de la contaminacion del aire urbano?"}},
+
+{w:"tributaire",pos:"adjective",exam:"delf",level:"c2",topic:"economy",
+ def:{en:"Dependent on something else for support or existence.",
+      fr:"Dependant de quelque chose d'autre pour exister ou fonctionner.",
+      es:"Dependiente de otra cosa para existir o funcionar."},
+ ex:{r:"L'economie de cette region reste largement tributaire du tourisme saisonnier.",
+     l:"On est un peu trop tributaire de nos telephones au quotidien, tu ne trouves pas?"},
+ syn:"dependant",
+ mn:{en:"TRIBU-TAIRE sounds like a tribute paid because you're dependent on someone - tributaire.",
+     fr:"TRIBU-TAIRE vient de tribut: payer un tribut car on depend de quelque chose.",
+     es:"TRIBU-TAIRE viene de tributo: pagar un tributo porque se depende de algo."},
+ q:{en:"What industries are most tributaire on fossil fuels today?",
+    fr:"Quelles industries sont le plus tributaires des energies fossiles aujourd'hui?",
+    es:"Que industrias son mas tributaire de los combustibles fosiles hoy?"}},
+
+{w:"subsumer",pos:"verb",exam:"delf",level:"c2",topic:"science",
+ def:{en:"To include something within a larger category or general principle.",
+      fr:"Inclure quelque chose dans une categorie plus large ou un principe general.",
+      es:"Incluir algo dentro de una categoria mas amplia o principio general."},
+ ex:{r:"Cette theorie tend a subsumer plusieurs modeles economiques distincts sous un meme cadre.",
+     l:"On pourrait subsumer tous ces petits problemes sous une seule question plus large."},
+ syn:"englober",
+ mn:{en:"SUB-SUME-R sounds like sub-summing small things under one big total - to subsumer, to include broadly.",
+     fr:"SUB-SUME-R vient de sub (sous) plus sommer: regrouper sous un meme principe.",
+     es:"SUB-SUME-R viene de sub (bajo): agrupar bajo un mismo principio general."},
+ q:{en:"How would you subsumer these different arguments under one main idea?",
+    fr:"Comment subsumeriez-vous ces differents arguments sous une idee principale?",
+    es:"Como subsumirias estos diferentes argumentos bajo una idea principal?"}},
+
+{w:"inherent",pos:"adjective",exam:"delf",level:"c2",topic:"society",
+ def:{en:"Existing as a natural or essential part of something.",
+      fr:"Existant comme une partie naturelle ou essentielle de quelque chose.",
+      es:"Que existe como parte natural o esencial de algo."},
+ ex:{r:"Il existe un risque inherent a tout investissement en bourse.",
+     l:"La curiosite semble etre un trait inherent chez les jeunes enfants."},
+ syn:"intrinseque",
+ mn:{en:"IN-HER-ENT sounds like in her, ent - always present inside someone from birth, inherent.",
+     fr:"IN-HERENT ressemble directement a inherent en francais.",
+     es:"INHERENTE suena directo al espanol."},
+ q:{en:"What risks are inherent in starting your own business?",
+    fr:"Quels risques sont inherents au fait de creer sa propre entreprise?",
+    es:"Que riesgos son inherent a empezar tu propio negocio?"}},
+
+{w:"pregnant",pos:"adjective",exam:"delf",level:"c2",topic:"society",
+ def:{en:"Having a strong and lasting impression or influence.",
+      fr:"Qui a une impression ou une influence forte et durable.",
+      es:"Que tiene una impresion o influencia fuerte y duradera."},
+ ex:{r:"Le souvenir de cet evenement reste particulierement pregnant dans la memoire collective.",
+     l:"Cette image est restee tellement pregnante que je m'en souviens encore aujourd'hui."},
+ syn:"marquant",
+ mn:{en:"PRE-GNANT sounds like pregnant with meaning - an idea so full and lasting, pregnant.",
+     fr:"PRE-GNANT ressemble a prendre: une idee qui prend fortement, pregnante.",
+     es:"PRE-GNANT suena a pregnante (cargado de significado): una idea que se queda grabada."},
+ q:{en:"Describe a memory that remains pregnant in your mind.",
+    fr:"Decrivez un souvenir qui reste tres pregnant dans votre esprit.",
+    es:"Describe un recuerdo que sigue siendo muy pregnant en tu mente."}},
+
+{w:"vehiculer",pos:"verb",exam:"delf",level:"c2",topic:"society",
+ def:{en:"To carry or transmit an idea, message, or value.",
+      fr:"Transporter ou transmettre une idee, un message ou une valeur.",
+      es:"Transportar o transmitir una idea, mensaje o valor."},
+ ex:{r:"Ces publicites vehiculent souvent des stereotypes nefastes sur le role des femmes.",
+     l:"Ce film vehicule un message assez positif sur l'amitie."},
+ syn:"transmettre",
+ mn:{en:"VE-HICULE-R sounds like a VEHICLE carrying a message from place to place - to vehiculer.",
+     fr:"VE-HICULE-R vient de vehicule: transporter une idee comme un vehicule transporte des gens.",
+     es:"VE-HICULE-R viene de vehiculo: transportar una idea como un vehiculo transporta gente."},
+ q:{en:"What message does this advertisement vehiculer about beauty standards?",
+    fr:"Quel message cette publicite vehicule-t-elle sur les standards de beaute?",
+    es:"Que mensaje vehiculer este anuncio sobre los estandares de belleza?"}},
+
+{w:"circonscrire",pos:"verb",exam:"delf",level:"c2",topic:"science",
+ def:{en:"To define the limits or boundaries of something precisely.",
+      fr:"Definir precisement les limites ou le perimetre de quelque chose.",
+      es:"Definir con precision los limites o el alcance de algo."},
+ ex:{r:"Les chercheurs ont eu du mal a circonscrire precisement les causes du phenomene.",
+     l:"On devrait circonscrire un peu mieux le sujet avant de commencer le debat."},
+ syn:"delimiter",
+ mn:{en:"CIRCON-SCRIRE sounds like drawing a CIRCLE around a topic to define it, circonscrire.",
+     fr:"CIRCON-SCRIRE vient de cercle: tracer un cercle autour d'un sujet pour le delimiter.",
+     es:"CIRCON-SCRIRE viene de circulo: trazar un circulo alrededor de un tema para delimitarlo."},
+ q:{en:"How would you circonscrire the scope of this research project?",
+    fr:"Comment circonscririez-vous le perimetre de ce projet de recherche?",
+    es:"Como circonscrire el alcance de este proyecto de investigacion?"}},
+
+{w:"denoter",pos:"verb",exam:"delf",level:"c2",topic:"science",
+ def:{en:"To be a sign of something; to indicate or reveal.",
+      fr:"Etre un signe de quelque chose; indiquer ou reveler.",
+      es:"Ser una senal de algo; indicar o revelar."},
+ ex:{r:"Cette hausse soudaine des prix denote une instabilite economique croissante.",
+     l:"Son silence pendant la reunion denotait clairement son desaccord."},
+ syn:"indiquer",
+ mn:{en:"DE-NOTE-R sounds like writing a NOTE that reveals what something really means, denoter.",
+     fr:"DE-NOTE-R vient de note: ecrire une note qui indique un sens precis.",
+     es:"DE-NOTE-R viene de nota: escribir una nota que indica un significado preciso."},
+ q:{en:"What does a sudden price increase usually denoter about the economy?",
+    fr:"Que denote generalement une hausse soudaine des prix sur l'economie?",
+    es:"Que suele denoter un aumento repentino de precios sobre la economia?"}},
+
+{w:"enteriner",pos:"verb",exam:"delf",level:"c2",topic:"economy",
+ def:{en:"To confirm or ratify a decision or agreement officially.",
+      fr:"Confirmer ou ratifier officiellement une decision ou un accord.",
+      es:"Confirmar o ratificar oficialmente una decision o acuerdo."},
+ ex:{r:"Le conseil municipal a enterine le nouveau plan de developpement urbain.",
+     l:"Il faut encore que le comite enterine cette proposition avant vendredi."},
+ syn:"ratifier",
+ mn:{en:"EN-TERI-NER sounds like putting something in the tureen to seal it officially, enteriner.",
+     fr:"EN-TERI-NER ressemble a entier (complet): rendre une decision complete et officielle.",
+     es:"EN-TERI-NER suena a entero (completo): hacer una decision completa y oficial, ratificarla."},
+ q:{en:"What steps are needed to enteriner a new law?",
+    fr:"Quelles etapes sont necessaires pour enteriner une nouvelle loi?",
+    es:"Que pasos son necesarios para enteriner una nueva ley?"}},
+
+{w:"paradigme",pos:"noun",exam:"delf",level:"c2",topic:"science",
+ def:{en:"A typical example or pattern of something; a model or framework.",
+      fr:"Un exemple ou modele typique de quelque chose; un cadre de reference.",
+      es:"Un ejemplo o modelo tipico de algo; un marco de referencia."},
+ ex:{r:"Cette decouverte a entraine un changement de paradigme dans la recherche medicale.",
+     l:"Cette application represente un tout nouveau paradigme pour l'apprentissage en ligne."},
+ syn:"modele",
+ mn:{en:"PARA-DIGME sounds like a parade of dimes forming the perfect model, un paradigme.",
+     fr:"PARA-DIGME ressemble directement a paradigme en francais.",
+     es:"PARADIGMA suena directo al espanol."},
+ q:{en:"What paradigme shift do you expect technology to bring in the next decade?",
+    fr:"Quel changement de paradigme attendez-vous de la technologie dans la prochaine decennie?",
+    es:"Que cambio de paradigme esperas que traiga la tecnologia en la proxima decada?"}},
+
+{w:"idoine",pos:"adjective",exam:"delf",level:"c2",topic:"education",
+ def:{en:"Perfectly suited or appropriate for a particular purpose.",
+      fr:"Parfaitement adapte ou approprie a un objectif particulier.",
+      es:"Perfectamente adecuado o apropiado para un proposito particular."},
+ ex:{r:"Le comite cherche encore le candidat idoine pour diriger ce projet ambitieux.",
+     l:"Ce n'est peut-etre pas le moment idoine pour lui parler de ce probleme."},
+ syn:"approprie",
+ mn:{en:"I-DOINE sounds like idle turned perfect - the one, ideal fit, idoine.",
+     fr:"I-DOINE ressemble a adequat: exactement ce qu'il faut, idoine.",
+     es:"I-DOINE suena a idoneo en espanol - perfectamente adecuado."},
+ q:{en:"What qualities make someone idoine for a leadership role?",
+    fr:"Quelles qualites rendent quelqu'un idoine pour un role de leadership?",
+    es:"Que cualidades hacen a alguien idoine para un rol de liderazgo?"}},
+
+{w:"plethore",pos:"noun",exam:"delf",level:"c2",topic:"economy",
+ def:{en:"An excessive amount or abundance of something.",
+      fr:"Une quantite excessive ou une abondance de quelque chose.",
+      es:"Una cantidad excesiva o abundancia de algo."},
+ ex:{r:"Le marche propose aujourd'hui une plethore d'options pour les consommateurs.",
+     l:"Il y a une plethore de restaurants dans ce quartier, on a l'embarras du choix."},
+ syn:"abondance",
+ mn:{en:"PLE-THORE sounds like plenty plus more - way more than plenty, une plethore.",
+     fr:"PLE-THORE ressemble a plein plus trop: beaucoup trop, une plethore.",
+     es:"PLE-THORE suena a pleno mas mas: demasiada abundancia, une plethore."},
+ q:{en:"What plethore of options do students have when choosing a career today?",
+    fr:"Quelle plethore d'options les etudiants ont-ils aujourd'hui pour choisir une carriere?",
+    es:"Que plethore de opciones tienen los estudiantes hoy para elegir una carrera?"}}
 ];
 
 // ---------------------------------------------------------------
@@ -1339,15 +2249,20 @@ const state = {
   phase: "idle", // idle | spinning | analyzing | question | feedback
   lastWord: null,
   currentWord: null,
-  analyzeTimer: null,
-  answerTimer: null,
+  analyzeInterval: null,
+  answerInterval: null,
   reelTimeouts: [],
   seen: 0,
   correct: 0
 };
 
-const LEVEL_LABELS = { basico:"Básico (B2)", intermedio:"Intermedio (C1)", avanzado:"Avanzado (C2)" };
-const LEVEL_CLASS = { basico:"level-basico", intermedio:"level-intermedio", avanzado:"level-avanzado" };
+const LEVEL_LABELS = { b1:"B1", b2:"B2", c1:"C1", c2:"C2" };
+const EXAM_LABELS = { ielts:"IELTS / TOEFL", delf:"DELF / DALF" };
+const EXAM_LANG = { ielts:"english", delf:"french" };
+const EXAM_TAGS = {
+  ielts: { reading:"Reading / Writing", listening:"Listening / Speaking" },
+  delf: { reading:"Compréhension écrite / Production écrite", listening:"Compréhension orale / Production orale" }
+};
 const TOPIC_LABELS = {
   education:"Education", environment:"Environment", technology:"Technology",
   society:"Society", economy:"Economy", health:"Health", science:"Science"
@@ -1363,6 +2278,9 @@ const resultBox = document.getElementById("resultBox");
 const questionSection = document.getElementById("questionSection");
 const feedbackSection = document.getElementById("feedbackSection");
 
+function getSelectedExam(){
+  return document.querySelector('input[name="exam"]:checked').value;
+}
 function getSelectedLevel(){
   return document.querySelector('input[name="level"]:checked').value;
 }
@@ -1370,10 +2288,30 @@ function getSelectedLang(){
   return document.querySelector('input[name="lang"]:checked').value;
 }
 function setFiltersLocked(locked){
-  document.querySelectorAll('input[name="level"], input[name="lang"]').forEach(el=>{
+  document.querySelectorAll('input[name="exam"], input[name="level"], input[name="lang"]').forEach(el=>{
     el.disabled = locked;
   });
+  if (!locked) updateLevelAvailability();
 }
+
+function updateLevelAvailability(){
+  const exam = getSelectedExam();
+  const availableLevels = new Set(WORD_BANK.filter(w => w.exam === exam).map(w => w.level));
+  document.querySelectorAll('input[name="level"]').forEach(input=>{
+    const available = availableLevels.has(input.value);
+    input.disabled = !available;
+    input.closest(".option-btn").style.display = available ? "" : "none";
+  });
+  const checked = document.querySelector('input[name="level"]:checked');
+  if (!checked || checked.disabled){
+    const firstAvailable = document.querySelector('input[name="level"]:not(:disabled)');
+    if (firstAvailable) firstAvailable.checked = true;
+  }
+}
+document.querySelectorAll('input[name="exam"]').forEach(el=>{
+  el.addEventListener("change", updateLevelAvailability);
+});
+updateLevelAvailability();
 
 function updateStatsUI(){
   document.getElementById("statSeen").textContent = state.seen;
@@ -1381,37 +2319,29 @@ function updateStatsUI(){
 }
 
 // ---------------------------------------------------------------
-// TIMER HELPER (non-blocking, progress-bar driven)
+// CIRCULAR TIMER HELPER (manual start, ticks every second, no auto-start)
 // ---------------------------------------------------------------
-function runTimer(seconds, fillEl, textEl, onDone){
-  const totalMs = seconds * 1000;
-  const start = performance.now();
-  let rafId = null;
+function resetCircleTimer(numEl, circleEl, msgEl, seconds){
+  numEl.textContent = seconds;
+  circleEl.classList.remove("done");
+  msgEl.textContent = "";
+}
 
-  fillEl.style.transition = "none";
-  fillEl.style.width = "100%";
-  void fillEl.offsetWidth; // force reflow
-  fillEl.style.transition = "width " + seconds + "s linear";
-  requestAnimationFrame(()=>{ fillEl.style.width = "0%"; });
-
-  function tick(now){
-    const elapsed = now - start;
-    const remaining = Math.max(0, totalMs - elapsed);
-    textEl.textContent = Math.ceil(remaining/1000) + "s";
+function startCircleCountdown(numEl, circleEl, msgEl, seconds, onDone){
+  let remaining = seconds;
+  const intervalId = setInterval(()=>{
+    remaining--;
     if (remaining <= 0){
-      onDone();
-      return;
+      numEl.textContent = 0;
+      clearInterval(intervalId);
+      circleEl.classList.add("done");
+      msgEl.textContent = "¡Tiempo terminado!";
+      setTimeout(onDone, 1200);
+    } else {
+      numEl.textContent = remaining;
     }
-    rafId = requestAnimationFrame(tick);
-  }
-  rafId = requestAnimationFrame(tick);
-
-  return {
-    cancel(){
-      if (rafId) cancelAnimationFrame(rafId);
-      fillEl.style.transition = "none";
-    }
-  };
+  }, 1000);
+  return intervalId;
 }
 
 // ---------------------------------------------------------------
@@ -1422,8 +2352,9 @@ spinBtn.addEventListener("click", spin);
 function spin(){
   if (state.phase !== "idle" && state.phase !== "feedback") return;
 
+  const exam = getSelectedExam();
   const level = getSelectedLevel();
-  const pool = WORD_BANK.filter(w => w.level === level);
+  const pool = WORD_BANK.filter(w => w.exam === exam && w.level === level);
   if (pool.length === 0) return;
 
   let candidate;
@@ -1436,6 +2367,9 @@ function spin(){
   setFiltersLocked(true);
   spinBtn.disabled = true;
   state.phase = "spinning";
+
+  if (state.analyzeInterval){ clearInterval(state.analyzeInterval); state.analyzeInterval = null; }
+  if (state.answerInterval){ clearInterval(state.answerInterval); state.answerInterval = null; }
 
   resultBox.classList.remove("active");
   questionSection.classList.remove("active");
@@ -1477,45 +2411,54 @@ function spin(){
 function showResult(word, lang){
   document.getElementById("resWord").textContent = word.w;
   document.getElementById("resPos").textContent = word.pos;
-  const lvlBadge = document.getElementById("resLevel");
-  lvlBadge.textContent = LEVEL_LABELS[word.level];
-  lvlBadge.className = "badge " + LEVEL_CLASS[word.level];
+  document.getElementById("resExam").textContent = EXAM_LABELS[word.exam];
+  document.getElementById("resLevel").textContent = LEVEL_LABELS[word.level];
   document.getElementById("resTopic").textContent = TOPIC_LABELS[word.topic] || word.topic;
 
   document.getElementById("resDef").textContent = word.def[lang];
   document.getElementById("resExReading").textContent = word.ex.r;
   document.getElementById("resExListening").textContent = word.ex.l;
+  document.getElementById("resTagReading").textContent = EXAM_TAGS[word.exam].reading;
+  document.getElementById("resTagListening").textContent = EXAM_TAGS[word.exam].listening;
   document.getElementById("resMnemonic").textContent = word.mn[lang];
   document.getElementById("resSyn").textContent = word.syn;
 
   document.getElementById("youglishBtn").href =
-    "https://youglish.com/pronounce/" + encodeURIComponent(word.w) + "/english";
+    "https://youglish.com/pronounce/" + encodeURIComponent(word.w) + "/" + EXAM_LANG[word.exam];
 
   resultBox.classList.add("active");
 }
 
 // ---------------------------------------------------------------
-// PHASE 1: ANALYZE (30s)
+// PHASE 1: ANALYZE (30s, manual start)
 // ---------------------------------------------------------------
-const analyzeFill = document.getElementById("analyzeFill");
-const analyzeText = document.getElementById("analyzeText");
+const analyzeCircle = document.getElementById("analyzeCircle");
+const analyzeNum = document.getElementById("analyzeNum");
+const analyzeMsg = document.getElementById("analyzeMsg");
+const analyzeStartBtn = document.getElementById("analyzeStartBtn");
 const analyzeDoneBtn = document.getElementById("analyzeDoneBtn");
-
 const analyzeTimerPanel = document.getElementById("analyzeTimerPanel");
 
 function startAnalyzePhase(){
   state.phase = "analyzing";
   analyzeTimerPanel.classList.add("active");
-  state.analyzeTimer = runTimer(30, analyzeFill, analyzeText, proceedToQuestion);
+  resetCircleTimer(analyzeNum, analyzeCircle, analyzeMsg, 30);
+  analyzeStartBtn.disabled = false;
+  if (state.analyzeInterval){ clearInterval(state.analyzeInterval); state.analyzeInterval = null; }
 }
+analyzeStartBtn.addEventListener("click", ()=>{
+  if (state.phase !== "analyzing" || state.analyzeInterval) return;
+  analyzeStartBtn.disabled = true;
+  state.analyzeInterval = startCircleCountdown(analyzeNum, analyzeCircle, analyzeMsg, 30, proceedToQuestion);
+});
 analyzeDoneBtn.addEventListener("click", ()=>{
   if (state.phase !== "analyzing") return;
-  if (state.analyzeTimer) state.analyzeTimer.cancel();
+  if (state.analyzeInterval){ clearInterval(state.analyzeInterval); state.analyzeInterval = null; }
   proceedToQuestion();
 });
 
 function proceedToQuestion(){
-  if (state.analyzeTimer){ state.analyzeTimer.cancel(); state.analyzeTimer = null; }
+  if (state.analyzeInterval){ clearInterval(state.analyzeInterval); state.analyzeInterval = null; }
   analyzeTimerPanel.classList.remove("active");
   state.phase = "question";
   const lang = getSelectedLang();
@@ -1527,18 +2470,27 @@ function proceedToQuestion(){
 }
 
 // ---------------------------------------------------------------
-// PHASE 2: ANSWER (60s)
+// PHASE 2: ANSWER (60s, manual start)
 // ---------------------------------------------------------------
-const answerFill = document.getElementById("answerFill");
-const answerText = document.getElementById("answerText");
+const answerCircle = document.getElementById("answerCircle");
+const answerNum = document.getElementById("answerNum");
+const answerMsg = document.getElementById("answerMsg");
+const answerStartBtn = document.getElementById("answerStartBtn");
 const submitAnswerBtn = document.getElementById("submitAnswerBtn");
 
 function startAnswerPhase(){
-  state.answerTimer = runTimer(60, answerFill, answerText, evaluateAnswer);
+  resetCircleTimer(answerNum, answerCircle, answerMsg, 60);
+  answerStartBtn.disabled = false;
+  if (state.answerInterval){ clearInterval(state.answerInterval); state.answerInterval = null; }
 }
+answerStartBtn.addEventListener("click", ()=>{
+  if (state.phase !== "question" || state.answerInterval) return;
+  answerStartBtn.disabled = true;
+  state.answerInterval = startCircleCountdown(answerNum, answerCircle, answerMsg, 60, evaluateAnswer);
+});
 submitAnswerBtn.addEventListener("click", ()=>{
   if (state.phase !== "question") return;
-  if (state.answerTimer) state.answerTimer.cancel();
+  if (state.answerInterval){ clearInterval(state.answerInterval); state.answerInterval = null; }
   evaluateAnswer();
 });
 
@@ -1557,7 +2509,7 @@ function checkAnswer(word, text){
 }
 
 function evaluateAnswer(){
-  if (state.answerTimer){ state.answerTimer.cancel(); state.answerTimer = null; }
+  if (state.answerInterval){ clearInterval(state.answerInterval); state.answerInterval = null; }
   state.phase = "feedback";
 
   const text = document.getElementById("answerInput").value;
