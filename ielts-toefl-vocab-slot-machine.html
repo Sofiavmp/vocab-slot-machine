@@ -80,52 +80,86 @@
     padding:18px 20px;
   }
 
-  .filters-grid{
+  .pills-row{
     display:flex;
     flex-wrap:wrap;
-    gap:24px;
-    justify-content:space-between;
+    gap:10px;
+    justify-content:center;
   }
-  .filter-group{flex:1 1 200px;}
-  .filter-group h3{
-    margin:0 0 10px;
-    font-size:.85rem;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    color:var(--secondary-dark);
-  }
-  .option-row{display:flex;flex-wrap:wrap;gap:8px;}
-  .option-btn{
-    position:relative;
-  }
-  .option-btn input{
-    position:absolute;
-    opacity:0;
-    inset:0;
-    cursor:pointer;
-  }
-  .option-btn label{
-    display:block;
+  .filter-pill{position:relative;}
+  .pill-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
     padding:9px 14px;
-    border-radius:10px;
+    border-radius:999px;
     border:1.5px solid var(--border);
     background:var(--surface);
     color:var(--text);
     font-size:.85rem;
     cursor:pointer;
-    transition:.15s;
-    user-select:none;
+    white-space:nowrap;
+    transition:border-color .15s, box-shadow .15s;
   }
-  .option-btn input:checked + label{
-    background:var(--accent);
-    color:#ffffff;
-    border-color:var(--accent);
-    font-weight:700;
+  .pill-btn:hover:not(:disabled){border-color:var(--accent);}
+  .pill-btn.open{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);}
+  .pill-btn:disabled{opacity:.5;cursor:not-allowed;}
+  .pill-dot{
+    width:9px;
+    height:9px;
+    min-width:9px;
+    border-radius:50%;
   }
-  .option-btn input:disabled + label{
-    opacity:.45;
-    cursor:not-allowed;
+  .pill-dot-exam{background:var(--accent);}
+  .pill-dot-level{background:var(--secondary);}
+  .pill-dot-lang{background:var(--accent-dark);}
+  .pill-arrow{font-size:.7rem;color:var(--text-soft);margin-left:2px;}
+
+  .pill-menu{
+    display:none;
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    min-width:230px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    box-shadow:0 10px 28px rgba(51,47,61,.15);
+    padding:6px;
+    z-index:100;
   }
+  .pill-menu.active{display:block;}
+  .pill-option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    width:100%;
+    padding:9px 12px;
+    border:none;
+    background:transparent;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:.88rem;
+    text-align:left;
+    color:var(--text);
+  }
+  .pill-option:hover:not(:disabled){background:var(--accent-soft);}
+  .pill-option.selected{background:var(--accent-soft);color:var(--accent-dark);font-weight:700;}
+  .pill-option:disabled{opacity:.4;cursor:not-allowed;}
+  .pill-option .unavailable-note{font-size:.68rem;color:var(--warn);}
+
+  .pill-notice{
+    display:none;
+    margin-top:10px;
+    text-align:center;
+    font-size:.8rem;
+    color:var(--warn);
+    background:var(--warn-soft);
+    border-radius:10px;
+    padding:8px 12px;
+  }
+  .pill-notice.active{display:block;}
 
   .spin-btn{
     margin-top:18px;
@@ -420,63 +454,64 @@
 
 <main>
   <section class="panel">
-    <div class="filters-grid">
-      <div class="filter-group">
-        <h3>Examen</h3>
-        <div class="option-row" id="examGroup">
-          <div class="option-btn">
-            <input type="radio" name="exam" id="exam-ielts" value="ielts" checked>
-            <label for="exam-ielts">IELTS / TOEFL (inglés)</label>
-          </div>
-          <div class="option-btn">
-            <input type="radio" name="exam" id="exam-delf" value="delf">
-            <label for="exam-delf">DELF / DALF (francés)</label>
-          </div>
-          <div class="option-btn">
-            <input type="radio" name="exam" id="exam-dele" value="dele">
-            <label for="exam-dele">DELE (español)</label>
-          </div>
+    <div class="pills-row" id="pillsRow">
+      <div class="filter-pill" id="examPillWrap">
+        <button type="button" class="pill-btn" id="examPillBtn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="pill-dot pill-dot-exam"></span>
+          <span class="pill-text">Idioma a aprender: <strong id="examPillValue">Inglés</strong></span>
+          <span class="pill-arrow">▾</span>
+        </button>
+        <div class="pill-menu" id="examPillMenu" role="listbox">
+          <button type="button" class="pill-option" data-value="ielts">Inglés (TOEFL/IELTS)</button>
+          <button type="button" class="pill-option" data-value="delf">Francés (DELF/DALF)</button>
+          <button type="button" class="pill-option" data-value="dele">Español (DELE)</button>
+        </div>
+        <div class="option-row" id="examGroup" style="display:none;">
+          <input type="radio" name="exam" id="exam-ielts" value="ielts" checked>
+          <input type="radio" name="exam" id="exam-delf" value="delf">
+          <input type="radio" name="exam" id="exam-dele" value="dele">
         </div>
       </div>
-      <div class="filter-group">
-        <h3>Nivel (CEFR)</h3>
-        <div class="option-row" id="levelGroup">
-          <div class="option-btn">
-            <input type="radio" name="level" id="lvl-b1" value="b1">
-            <label for="lvl-b1">B1</label>
-          </div>
-          <div class="option-btn">
-            <input type="radio" name="level" id="lvl-b2" value="b2" checked>
-            <label for="lvl-b2">B2</label>
-          </div>
-          <div class="option-btn">
-            <input type="radio" name="level" id="lvl-c1" value="c1">
-            <label for="lvl-c1">C1</label>
-          </div>
-          <div class="option-btn">
-            <input type="radio" name="level" id="lvl-c2" value="c2">
-            <label for="lvl-c2">C2</label>
-          </div>
+
+      <div class="filter-pill" id="levelPillWrap">
+        <button type="button" class="pill-btn" id="levelPillBtn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="pill-dot pill-dot-level"></span>
+          <span class="pill-text">Nivel: <strong id="levelPillValue">B2</strong></span>
+          <span class="pill-arrow">▾</span>
+        </button>
+        <div class="pill-menu" id="levelPillMenu" role="listbox">
+          <button type="button" class="pill-option" data-value="b1">B1</button>
+          <button type="button" class="pill-option" data-value="b2">B2</button>
+          <button type="button" class="pill-option" data-value="c1">C1</button>
+          <button type="button" class="pill-option" data-value="c2">C2</button>
+        </div>
+        <div class="option-row" id="levelGroup" style="display:none;">
+          <input type="radio" name="level" id="lvl-b1" value="b1">
+          <input type="radio" name="level" id="lvl-b2" value="b2" checked>
+          <input type="radio" name="level" id="lvl-c1" value="c1">
+          <input type="radio" name="level" id="lvl-c2" value="c2">
         </div>
       </div>
-      <div class="filter-group">
-        <h3>Idioma (definición, mnemotecnia y pregunta)</h3>
-        <div class="option-row" id="langGroup">
-          <div class="option-btn">
-            <input type="radio" name="lang" id="lang-en" value="en" checked>
-            <label for="lang-en">Inglés</label>
-          </div>
-          <div class="option-btn">
-            <input type="radio" name="lang" id="lang-fr" value="fr">
-            <label for="lang-fr">Francés</label>
-          </div>
-          <div class="option-btn">
-            <input type="radio" name="lang" id="lang-es" value="es">
-            <label for="lang-es">Español</label>
-          </div>
+
+      <div class="filter-pill" id="langPillWrap">
+        <button type="button" class="pill-btn" id="langPillBtn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="pill-dot pill-dot-lang"></span>
+          <span class="pill-text">Tu idioma base: <strong id="langPillValue">Inglés</strong></span>
+          <span class="pill-arrow">▾</span>
+        </button>
+        <div class="pill-menu" id="langPillMenu" role="listbox">
+          <button type="button" class="pill-option" data-value="es">Español</button>
+          <button type="button" class="pill-option" data-value="en">Inglés</button>
+          <button type="button" class="pill-option" data-value="fr">Francés</button>
+        </div>
+        <div class="option-row" id="langGroup" style="display:none;">
+          <input type="radio" name="lang" id="lang-en" value="en" checked>
+          <input type="radio" name="lang" id="lang-fr" value="fr">
+          <input type="radio" name="lang" id="lang-es" value="es">
         </div>
       </div>
     </div>
+    <div class="pill-notice" id="pillNotice"></div>
     <button class="spin-btn" id="spinBtn">🎰 Girar la palanca</button>
   </section>
 
@@ -3313,6 +3348,10 @@ function setFiltersLocked(locked){
   document.querySelectorAll('input[name="exam"], input[name="level"], input[name="lang"]').forEach(el=>{
     el.disabled = locked;
   });
+  document.getElementById("examPillBtn").disabled = locked;
+  document.getElementById("levelPillBtn").disabled = locked;
+  document.getElementById("langPillBtn").disabled = locked;
+  if (locked) closeAllPillMenus();
   if (!locked) updateLevelAvailability();
 }
 
@@ -3320,20 +3359,152 @@ function updateLevelAvailability(){
   const exam = getSelectedExam();
   const availableLevels = new Set(WORD_BANK.filter(w => w.exam === exam).map(w => w.level));
   document.querySelectorAll('input[name="level"]').forEach(input=>{
-    const available = availableLevels.has(input.value);
-    input.disabled = !available;
-    input.closest(".option-btn").style.display = available ? "" : "none";
+    input.disabled = !availableLevels.has(input.value);
   });
   const checked = document.querySelector('input[name="level"]:checked');
+  let levelWasAdjusted = false;
   if (!checked || checked.disabled){
     const firstAvailable = document.querySelector('input[name="level"]:not(:disabled)');
-    if (firstAvailable) firstAvailable.checked = true;
+    if (firstAvailable){ firstAvailable.checked = true; levelWasAdjusted = true; }
+  }
+  renderLevelMenu(availableLevels);
+  updatePillLabel("level");
+  if (levelWasAdjusted){
+    showPillNotice("No hay palabras en ese nivel para este idioma — se ajustó automáticamente al nivel disponible más cercano.");
   }
 }
+
+// ---------------------------------------------------------------
+// FILTER PILLS (dropdown UI over the hidden radio inputs above)
+// ---------------------------------------------------------------
+const EXAM_PILL_SHORT = { ielts:"Inglés", delf:"Francés", dele:"Español" };
+const LANG_PILL_SHORT = { en:"Inglés", fr:"Francés", es:"Español" };
+
+const PILL_MENU_BTN = {
+  examPillMenu: "examPillBtn",
+  levelPillMenu: "levelPillBtn",
+  langPillMenu: "langPillBtn"
+};
+
+function closeAllPillMenus(){
+  Object.keys(PILL_MENU_BTN).forEach(menuId=>{
+    document.getElementById(menuId).classList.remove("active");
+    const btn = document.getElementById(PILL_MENU_BTN[menuId]);
+    btn.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+  });
+}
+
+function togglePillMenu(menuId){
+  const menu = document.getElementById(menuId);
+  const btn = document.getElementById(PILL_MENU_BTN[menuId]);
+  if (btn.disabled) return;
+  const wasOpen = menu.classList.contains("active");
+  closeAllPillMenus();
+  if (!wasOpen){
+    menu.classList.add("active");
+    btn.classList.add("open");
+    btn.setAttribute("aria-expanded", "true");
+  }
+}
+
+document.getElementById("examPillBtn").addEventListener("click", (e)=>{
+  e.stopPropagation();
+  togglePillMenu("examPillMenu");
+});
+document.getElementById("levelPillBtn").addEventListener("click", (e)=>{
+  e.stopPropagation();
+  togglePillMenu("levelPillMenu");
+});
+document.getElementById("langPillBtn").addEventListener("click", (e)=>{
+  e.stopPropagation();
+  togglePillMenu("langPillMenu");
+});
+document.addEventListener("click", (e)=>{
+  if (!e.target.closest(".filter-pill")) closeAllPillMenus();
+});
+
+document.querySelectorAll("#examPillMenu .pill-option").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const val = btn.dataset.value;
+    const radio = document.getElementById("exam-" + val);
+    radio.checked = true;
+    radio.dispatchEvent(new Event("change", { bubbles:true }));
+    updatePillLabel("exam");
+    closeAllPillMenus();
+  });
+});
+document.querySelectorAll("#levelPillMenu .pill-option").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    if (btn.disabled) return;
+    document.getElementById("lvl-" + btn.dataset.value).checked = true;
+    updatePillLabel("level");
+    closeAllPillMenus();
+  });
+});
+document.querySelectorAll("#langPillMenu .pill-option").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.getElementById("lang-" + btn.dataset.value).checked = true;
+    updatePillLabel("lang");
+    closeAllPillMenus();
+  });
+});
+
+function renderLevelMenu(availableLevels){
+  const currentLevel = getSelectedLevel();
+  document.querySelectorAll("#levelPillMenu .pill-option").forEach(btn=>{
+    const val = btn.dataset.value;
+    const available = availableLevels.has(val);
+    btn.disabled = !available;
+    btn.classList.toggle("selected", val === currentLevel);
+    let note = btn.querySelector(".unavailable-note");
+    if (!available && !note){
+      note = document.createElement("span");
+      note.className = "unavailable-note";
+      note.textContent = "no disponible";
+      btn.appendChild(note);
+    } else if (available && note){
+      note.remove();
+    }
+  });
+}
+
+function updatePillLabel(kind){
+  if (kind === "exam"){
+    const val = getSelectedExam();
+    document.getElementById("examPillValue").textContent = EXAM_PILL_SHORT[val];
+    document.querySelectorAll("#examPillMenu .pill-option").forEach(b=>{
+      b.classList.toggle("selected", b.dataset.value === val);
+    });
+  } else if (kind === "level"){
+    const val = getSelectedLevel();
+    document.getElementById("levelPillValue").textContent = val.toUpperCase();
+    document.querySelectorAll("#levelPillMenu .pill-option").forEach(b=>{
+      b.classList.toggle("selected", b.dataset.value === val);
+    });
+  } else if (kind === "lang"){
+    const val = getSelectedLang();
+    document.getElementById("langPillValue").textContent = LANG_PILL_SHORT[val];
+    document.querySelectorAll("#langPillMenu .pill-option").forEach(b=>{
+      b.classList.toggle("selected", b.dataset.value === val);
+    });
+  }
+}
+
+function showPillNotice(msg){
+  const el = document.getElementById("pillNotice");
+  el.textContent = msg;
+  el.classList.add("active");
+  clearTimeout(showPillNotice._timer);
+  showPillNotice._timer = setTimeout(()=>{ el.classList.remove("active"); }, 4500);
+}
+
 document.querySelectorAll('input[name="exam"]').forEach(el=>{
   el.addEventListener("change", updateLevelAvailability);
 });
 updateLevelAvailability();
+updatePillLabel("exam");
+updatePillLabel("lang");
 
 function updateStatsUI(){
   document.getElementById("statSeen").textContent = state.seen;
