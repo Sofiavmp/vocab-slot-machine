@@ -293,6 +293,31 @@
   }
   .youglish-btn:hover{background:var(--secondary-dark);}
 
+  .youglish-embed{
+    margin-top:16px;
+    padding:14px;
+    background:var(--secondary-soft);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+  }
+  .youglish-embed-host{border-radius:10px;overflow:hidden;}
+  .youglish-loading{
+    text-align:center;
+    padding:24px 10px;
+    font-size:.85rem;
+    color:var(--text-soft);
+  }
+  .youglish-fallback{display:none;text-align:center;padding:6px 0 4px;}
+  .youglish-fallback.active{display:block;}
+  .youglish-fallback p{margin:0 0 10px;font-size:.85rem;color:var(--text-soft);}
+  .youglish-attribution{
+    margin-top:8px;
+    text-align:right;
+    font-size:.7rem;
+    color:var(--text-soft);
+  }
+  .youglish-attribution a{color:var(--secondary-dark);}
+
   /* timer panels */
   .timer-panel{display:none;text-align:center;}
   .timer-panel.active{display:block;}
@@ -514,7 +539,16 @@
       <span class="syn-pill">Sinónimo: <strong id="resSyn"></strong></span>
     </div>
 
-    <a class="youglish-btn" id="youglishBtn" href="#" target="_blank" rel="noopener">🔊 Escuchar pronunciación en YouGlish</a>
+    <div class="youglish-embed" id="youglishEmbed">
+      <div class="youglish-embed-host" id="youglishWidgetContainer">
+        <div class="youglish-loading" id="youglishLoading">🔊 Cargando pronunciación en video…</div>
+      </div>
+      <div class="youglish-fallback" id="youglishFallback">
+        <p>No se pudo cargar el reproductor incrustado (revisá tu conexión a internet).</p>
+        <a class="youglish-btn" id="youglishFallbackLink" href="#" target="_blank" rel="noopener">🔊 Abrir pronunciación en YouGlish</a>
+      </div>
+      <div class="youglish-attribution">Powered by <a href="https://youglish.com" target="_blank" rel="noopener">YouGlish.com</a></div>
+    </div>
 
     <div class="timer-panel" id="analyzeTimerPanel" style="margin-top:22px;">
       <h3>⏱ Tiempo para analizar</h3>
@@ -2423,11 +2457,103 @@ function showResult(word, lang){
   document.getElementById("resMnemonic").textContent = word.mn[lang];
   document.getElementById("resSyn").textContent = word.syn;
 
-  document.getElementById("youglishBtn").href =
-    "https://youglish.com/pronounce/" + encodeURIComponent(word.w) + "/" + EXAM_LANG[word.exam];
-
   resultBox.classList.add("active");
+  updateYouglishEmbed(word);
 }
+
+// ---------------------------------------------------------------
+// YOUGLISH EMBEDDED WIDGET (requires internet; falls back to a link if it can't load)
+// ---------------------------------------------------------------
+let youglishScriptState = "loading"; // loading | ready | failed
+let youglishWidget = null;
+let youglishPending = null; // word queued to load once the widget API is ready
+
+(function loadYouglishScript(){
+  const tag = document.createElement("script");
+  tag.src = "https://youglish.com/public/emb/widget.js";
+  tag.onerror = function(){
+    youglishScriptState = "failed";
+    if (youglishPending) showYouglishFallback(youglishPending);
+  };
+  document.head.appendChild(tag);
+  setTimeout(function(){
+    if (youglishScriptState === "loading"){
+      youglishScriptState = "failed";
+      if (youglishPending) showYouglishFallback(youglishPending);
+    }
+  }, 8000);
+})();
+
+window.onYouglishAPIReady = function(){
+  if (youglishScriptState === "failed") return;
+  youglishScriptState = "ready";
+  if (youglishPending){
+    const word = youglishPending;
+    youglishPending = null;
+    initOrUpdateYouglishWidget(word);
+  }
+};
+
+function youglishFallbackUrl(word){
+  return "https://youglish.com/pronounce/" + encodeURIComponent(word.w) + "/" + EXAM_LANG[word.exam];
+}
+
+function showYouglishFallback(word){
+  document.getElementById("youglishWidgetContainer").style.display = "none";
+  document.getElementById("youglishFallback").classList.add("active");
+  document.getElementById("youglishFallbackLink").href = youglishFallbackUrl(word);
+}
+
+function showYouglishLoading(){
+  document.getElementById("youglishWidgetContainer").style.display = "";
+  document.getElementById("youglishFallback").classList.remove("active");
+}
+
+function initOrUpdateYouglishWidget(word){
+  const hostEl = document.getElementById("youglishWidgetContainer");
+  const lang = EXAM_LANG[word.exam];
+  if (!youglishWidget){
+    const width = Math.max(280, Math.min(hostEl.clientWidth || 500, 640));
+    youglishWidget = new YG.Widget("youglishWidgetContainer", {
+      width: width,
+      components: 72,
+      query: word.w,
+      lang: lang,
+      autoStart: false
+    });
+  } else {
+    youglishWidget.fetch(word.w, lang);
+  }
+}
+
+function updateYouglishEmbed(word){
+  if (youglishScriptState === "failed"){
+    showYouglishFallback(word);
+    return;
+  }
+  showYouglishLoading();
+  if (youglishScriptState === "ready"){
+    initOrUpdateYouglishWidget(word);
+  } else {
+    youglishPending = word;
+  }
+}
+
+function debounce(fn, wait){
+  let t;
+  return function(){
+    clearTimeout(t);
+    const args = arguments;
+    t = setTimeout(()=>fn.apply(null, args), wait);
+  };
+}
+
+window.addEventListener("resize", debounce(function(){
+  if (!youglishWidget) return;
+  const hostEl = document.getElementById("youglishWidgetContainer");
+  const width = Math.max(280, Math.min(hostEl.clientWidth || 500, 640));
+  youglishWidget.resize(width);
+}, 300));
 
 // ---------------------------------------------------------------
 // PHASE 1: ANALYZE (30s, manual start)
